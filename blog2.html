@@ -1,0 +1,1012 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Coffee Blog — The Art of Tasting</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --coffee-dark: #3e2723;
+      --coffee-medium: #5d4037;
+      --coffee-light: #8d6e63;
+      --coffee-cream: #efebe9;
+      --coffee-gold: #d4b78c;
+      --coffee-accent: #a86f49;
+    }
+
+    body {
+      font-family: 'Lato', sans-serif;
+      background-color: #fff9f5;
+      color: #333;
+      line-height: 1.8;
+      overflow-x: hidden;
+      background: linear-gradient(135deg, #f9f4ea 0%, #f5e8d1 100%);
+      background-attachment: fixed;
+    }
+
+    /* Floating coffee beans animation */
+    .coffee-beans {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    .bean {
+      position: absolute;
+      width: 20px;
+      height: 12px;
+      background: var(--coffee-medium);
+      border-radius: 50%;
+      opacity: 0.2;
+      animation: float 15s infinite linear;
+    }
+
+    @keyframes float {
+      0% {
+        transform: translateY(100vh) translateX(0) rotate(0deg);
+      }
+      100% {
+        transform: translateY(-100px) translateX(100px) rotate(360deg);
+      }
+    }
+
+    /* Navigation Styles */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background-color: var(--coffee-dark);
+      color: white;
+      z-index: 1000;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+      transition: all 0.4s ease;
+    }
+    
+    .nav-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 2rem;
+      position: relative;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+    
+    .logo-container {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      color: white;
+      cursor: pointer;
+      user-select: none;
+      font-weight: bold;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      z-index: 10;
+      transition: transform 0.3s ease;
+    }
+    
+    .logo-container:hover {
+      transform: scale(1.03);
+    }
+    
+    .logo-container img {
+      height: 45px;
+      width: 45px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid var(--coffee-gold);
+      transition: transform 0.5s ease;
+    }
+    
+    .logo-container:hover img {
+      transform: rotate(15deg);
+    }
+    
+    .logo-text {
+      font-size: 1.3rem;
+      font-family: 'Playfair Display', serif;
+      color: var(--coffee-gold);
+    }
+    
+    .nav-links {
+      display: flex;
+      gap: 1.8rem;
+      align-items: center;
+    }
+    
+    .nav-links a {
+      color: white;
+      text-decoration: none;
+      text-transform: uppercase;
+      font-size: 0.95rem;
+      font-weight: 500;
+      letter-spacing: 0.5px;
+      padding: 8px 5px;
+      position: relative;
+      transition: color 0.3s ease;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    
+    .nav-links a i {
+      font-size: 1.1rem;
+    }
+    
+    .nav-links a:hover {
+      color: var(--coffee-gold);
+    }
+    
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--coffee-gold);
+      transition: width 0.3s ease;
+    }
+    
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+    
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 6px;
+      cursor: pointer;
+      z-index: 10;
+      padding: 8px;
+      border-radius: 5px;
+      transition: background 0.3s ease;
+    }
+    
+    .hamburger:hover {
+      background: rgba(255, 255, 255, 0.1);
+    }
+    
+    .hamburger span {
+      width: 28px;
+      height: 3px;
+      background: white;
+      border-radius: 2px;
+      transition: all 0.3s ease;
+    }
+    
+    .mobile-nav {
+      display: none;
+      flex-direction: column;
+      background-color: var(--coffee-medium);
+      padding: 1rem 0;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      width: 100%;
+      box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+      z-index: 9;
+      border-radius: 0 0 10px 10px;
+    }
+    
+    .mobile-nav a {
+      color: white;
+      padding: 0.9rem 2rem;
+      text-decoration: none;
+      font-size: 1.1rem;
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      transition: background 0.3s ease;
+    }
+    
+    .mobile-nav a:hover {
+      background: rgba(255, 255, 255, 0.1);
+    }
+    
+    .mobile-nav a i {
+      width: 25px;
+      text-align: center;
+    }
+    
+    /* Active state for mobile menu */
+    .hamburger.active span:nth-child(1) {
+      transform: translateY(9px) rotate(45deg);
+    }
+    
+    .hamburger.active span:nth-child(2) {
+      opacity: 0;
+    }
+    
+    .hamburger.active span:nth-child(3) {
+      transform: translateY(-9px) rotate(-45deg);
+    }
+
+    /* Hero Section */
+    .hero {
+      height: 80vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: white;
+      position: relative;
+      overflow: hidden;
+      margin-top: 80px;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(rgba(62, 39, 35, 0.85), rgba(62, 39, 35, 0.9)), 
+                  url('https://images.unsplash.com/photo-1511920170033-f8396924c348') no-repeat center center/cover;
+      z-index: -1;
+    }
+
+    .hero-content {
+      max-width: 800px;
+      padding: 0 20px;
+      animation: fadeInUp 1s ease-out;
+    }
+
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 4rem;
+      margin-bottom: 1.5rem;
+      text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+      line-height: 1.2;
+    }
+
+    .hero p {
+      font-size: 1.4rem;
+      margin-bottom: 2.5rem;
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .btn {
+      display: inline-block;
+      background: var(--coffee-gold);
+      color: var(--coffee-dark);
+      padding: 14px 35px;
+      border-radius: 30px;
+      text-decoration: none;
+      font-weight: bold;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      transition: all 0.3s ease;
+      border: 2px solid var(--coffee-gold);
+      font-size: 1.1rem;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    }
+    
+    .btn:hover {
+      background: transparent;
+      color: var(--coffee-gold);
+      transform: translateY(-5px);
+      box-shadow: 0 7px 20px rgba(0, 0, 0, 0.3);
+    }
+
+    /* Main Content */
+    .container {
+      max-width: 1200px;
+      margin: 5rem auto;
+      padding: 0 2rem;
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 4rem;
+      position: relative;
+    }
+
+    .section-title h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.8rem;
+      color: var(--coffee-medium);
+      margin-bottom: 1rem;
+      display: inline-block;
+      padding: 0 20px;
+      background: linear-gradient(transparent 60%, rgba(168, 111, 73, 0.2) 40%);
+    }
+
+    .section-title::before,
+    .section-title::after {
+      content: "";
+      position: absolute;
+      top: 50%;
+      width: 30%;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--coffee-accent), transparent);
+    }
+
+    .section-title::before {
+      left: 0;
+    }
+
+    .section-title::after {
+      right: 0;
+    }
+
+    .tasting-step {
+      display: flex;
+      align-items: center;
+      margin-bottom: 5rem;
+      background: white;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+      transition: transform 0.4s ease;
+    }
+
+    .tasting-step:hover {
+      transform: translateY(-10px);
+    }
+
+    .step-content {
+      flex: 1;
+      padding: 3rem;
+    }
+
+    .step-image {
+      flex: 1;
+      min-height: 400px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .step-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+
+    .tasting-step:hover .step-image img {
+      transform: scale(1.05);
+    }
+
+    .step-number {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      background: var(--coffee-gold);
+      color: var(--coffee-dark);
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.8rem;
+      font-weight: bold;
+      font-family: 'Playfair Display', serif;
+      z-index: 2;
+    }
+
+    h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.2rem;
+      color: var(--coffee-medium);
+      margin-bottom: 1.5rem;
+    }
+
+    p {
+      margin-bottom: 1.5rem;
+      font-size: 1.1rem;
+      color: #555;
+      line-height: 1.8;
+    }
+
+    ul {
+      margin: 1.5rem 0;
+      padding-left: 1.5rem;
+    }
+
+    li {
+      margin-bottom: 0.8rem;
+      position: relative;
+      padding-left: 1.8rem;
+    }
+
+    li::before {
+      content: "☕";
+      position: absolute;
+      left: 0;
+      color: var(--coffee-accent);
+    }
+
+    /* Gallery */
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+      margin-top: 3rem;
+    }
+
+    .gallery-item {
+      border-radius: 15px;
+      overflow: hidden;
+      position: relative;
+      height: 250px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      transition: all 0.4s ease;
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+
+    .gallery-item:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15);
+    }
+
+    .gallery-item:hover img {
+      transform: scale(1.1);
+    }
+
+    .gallery-item::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(transparent 70%, rgba(0, 0, 0, 0.7));
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .gallery-item:hover::after {
+      opacity: 1;
+    }
+
+    /* CTA Section */
+    .cta-box {
+      background: linear-gradient(135deg, var(--coffee-light) 0%, var(--coffee-medium) 100%);
+      border-radius: 20px;
+      padding: 3.5rem 2rem;
+      margin: 5rem 0;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      color: white;
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+    }
+
+    .cta-box::before {
+      content: "";
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 70%);
+      transform: rotate(30deg);
+      z-index: 1;
+    }
+
+    .cta-content {
+      position: relative;
+      z-index: 2;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    .cta-box h3 {
+      font-size: 2.5rem;
+      margin-bottom: 1.5rem;
+      color: var(--coffee-gold);
+    }
+
+    .cta-box p {
+      font-size: 1.2rem;
+      color: white;
+      margin-bottom: 2rem;
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      background: var(--coffee-dark);
+      color: var(--coffee-gold);
+      padding: 3rem 1rem;
+      margin-top: 5rem;
+      position: relative;
+    }
+
+    .footer-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      text-align: left;
+    }
+
+    .footer-section h4 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem;
+      margin-bottom: 1.5rem;
+      color: white;
+      position: relative;
+      display: inline-block;
+    }
+
+    .footer-section h4::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 50px;
+      height: 2px;
+      background: var(--coffee-gold);
+    }
+
+    .footer-section p, .footer-section a {
+      color: var(--coffee-cream);
+      margin-bottom: 1rem;
+      display: block;
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    .footer-section a:hover {
+      color: var(--coffee-gold);
+    }
+
+    .social-links {
+      display: flex;
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+
+    .social-links a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 50%;
+      transition: all 0.3s ease;
+    }
+
+    .social-links a:hover {
+      background: var(--coffee-gold);
+      transform: translateY(-3px);
+    }
+
+    .copyright {
+      text-align: center;
+      padding-top: 2rem;
+      margin-top: 2rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      font-size: 0.9rem;
+      color: var(--coffee-cream);
+    }
+
+    /* Animations */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Responsive Styles */
+    @media (max-width: 992px) {
+      .nav-links {
+        gap: 1.2rem;
+      }
+      
+      .logo-text {
+        font-size: 1.2rem;
+      }
+
+      .hero h1 {
+        font-size: 3.5rem;
+      }
+
+      .tasting-step {
+        flex-direction: column;
+      }
+
+      .step-content, .step-image {
+        width: 100%;
+      }
+
+      .step-image {
+        min-height: 300px;
+      }
+    }
+    
+    @media (max-width: 768px) {
+      .nav-links {
+        display: none;
+      }
+      
+      .hamburger {
+        display: flex;
+      }
+      
+      .logo-text {
+        font-size: 1.1rem;
+      }
+      
+      .hero h1 {
+        font-size: 2.8rem;
+      }
+
+      .hero p {
+        font-size: 1.2rem;
+      }
+
+      .section-title h2 {
+        font-size: 2.3rem;
+      }
+
+      .section-title::before,
+      .section-title::after {
+        width: 20%;
+      }
+
+      .step-content {
+        padding: 2rem;
+      }
+
+      .step-number {
+        width: 40px;
+        height: 40px;
+        font-size: 1.5rem;
+      }
+    }
+    
+    @media (max-width: 480px) {
+      .nav-inner {
+        padding: 1rem;
+      }
+      
+      .logo-container img {
+        height: 40px;
+        width: 40px;
+      }
+      
+      .logo-text {
+        font-size: 1rem;
+      }
+      
+      .hero {
+        height: 70vh;
+      }
+      
+      .hero h1 {
+        font-size: 2.3rem;
+      }
+
+      .hero p {
+        font-size: 1.1rem;
+      }
+
+      .btn {
+        padding: 12px 25px;
+        font-size: 1rem;
+      }
+
+      .section-title h2 {
+        font-size: 2rem;
+      }
+
+      .section-title::before,
+      .section-title::after {
+        width: 15%;
+      }
+
+      h3 {
+        font-size: 1.8rem;
+      }
+    }
+
+    /* Animation for mobile menu */
+    @keyframes slideDown {
+      from {
+        opacity: 0;
+        transform: translateY(-20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    .mobile-nav.show {
+      display: flex;
+      animation: slideDown 0.4s ease forwards;
+    }
+  </style>
+</head>
+<body>
+  <!-- Floating coffee beans background -->
+  <div class="coffee-beans" id="coffeeBeans"></div>
+  
+  <!-- Navigation Bar -->
+  <nav id="navbar">
+    <div class="nav-inner">
+      <div class="logo-container">
+        <img src="https://img.freepik.com/premium-vector/coffee-bean-drink-logo-design-brown-color-vector-illustration_638875-1264.jpg?uid=R198666552&ga=GA1.1.395247667.1747458314&semt=ais_hybrid&w=740" alt="Jawi Coffee Logo">
+        <span class="logo-text">Jawi Coffee</span>
+      </div>
+      
+      <div class="nav-links">
+        <a href="index.html"><i class="fas fa-home"></i> Home</a>
+        <a href="menu.html"><i class="fas fa-coffee"></i> Menu</a>
+        <a href="ourstory.html"><i class="fas fa-book-open"></i> Our Story</a>
+        <a href="location.html"><i class="fas fa-map-marker-alt"></i> Locations</a>
+        <a href="gallery.html"><i class="fas fa-images"></i> Gallery</a>
+        <a href="contact.html"><i class="fas fa-envelope"></i> Contact Us</a>
+        <a href="blog1.html"><i class="fas fa-blog"></i> Blog</a>
+      </div>
+      
+      <div class="hamburger" onclick="toggleMobileMenu()">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+    
+    <div class="mobile-nav" id="mobileNav">
+      <a href="index.html"><i class="fas fa-home"></i> Home</a>
+      <a href="menu.html"><i class="fas fa-coffee"></i> Menu</a>
+      <a href="ourstory.html"><i class="fas fa-book-open"></i> Our Story</a>
+      <a href="location.html"><i class="fas fa-map-marker-alt"></i> Locations</a>
+      <a href="gallery.html"><i class="fas fa-images"></i> Gallery</a>
+      <a href="contact.html"><i class="fas fa-envelope"></i> Contact Us</a>
+      <a href="blog1.html"><i class="fas fa-blog"></i> Blog</a>
+    </div>
+  </nav>
+  
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-content">
+      <h1>The Art of Coffee Tasting</h1>
+      <p>Coffee isn't just a drink — it's a ritual, a flavor journey, and a daily companion</p>
+      <a href="#tasting" class="btn">Start Your Tasting Journey</a>
+    </div>
+  </section>
+  
+  <!-- Main Content -->
+  <main class="container" id="tasting">
+    <div class="section-title">
+      <h2>Coffee Tasting Guide</h2>
+    </div>
+    
+    <!-- Step 1 -->
+    <div class="tasting-step">
+      <div class="step-content">
+        <h3>Smell the Aroma</h3>
+        <p>Before tasting, take a moment to breathe in the aroma. A good coffee can reveal hints of chocolate, fruit, earthiness, or spices — all through scent alone.</p>
+        <p>Swirl your cup gently to release more aromatic compounds. Close your eyes and try to identify specific scents. Is it nutty? Floral? Earthy? This step prepares your palate for the tasting experience.</p>
+      </div>
+      <div class="step-image">
+        <div class="step-number">1</div>
+        <img src="https://img.freepik.com/free-photo/portrait-man-drinking-tea_23-2151783130.jpg?uid=R198666552&ga=GA1.1.395247667.1747458314&semt=ais_hybrid&w=740" alt="Smelling coffee aroma">
+      </div>
+    </div>
+    
+    <!-- Step 2 -->
+    <div class="tasting-step">
+      <div class="step-image">
+        <div class="step-number">2</div>
+        <img src="https://img.freepik.com/free-photo/brown-coffee-droplets-fly-around-cup-chaotic-artistic-splash_91128-4339.jpg?uid=R198666552&ga=GA1.1.395247667.1747458314&semt=ais_hybrid&w=740" alt="Slurping coffee">
+      </div>
+      <div class="step-content">
+        <h3>Taste and Slurp</h3>
+        <p>Slurping spreads the coffee evenly across your tongue, allowing you to experience the full range of flavors and textures.</p>
+        <ul>
+          <li><strong>Sweetness:</strong> From natural sugars in the beans</li>
+          <li><strong>Acidity:</strong> Bright, citrusy notes that give coffee its liveliness</li>
+          <li><strong>Body:</strong> The weight and texture — light, medium, or full</li>
+          <li><strong>Flavor:</strong> The distinctive taste profile — fruity, nutty, chocolatey?</li>
+        </ul>
+        <p>Take a spoonful of coffee and slurp it vigorously. This aerates the coffee and spreads it across your entire palate.</p>
+      </div>
+    </div>
+    
+    <!-- Step 3 -->
+    <div class="tasting-step">
+      <div class="step-content">
+        <h3>Identify the Flavor Notes</h3>
+        <p>Good beans express their origin. You might taste the brightness of an Ethiopian roast or the caramel smoothness of a Colombian brew.</p>
+        <p>Consider the flavor profile: Is it fruity like berries or citrus? Nutty like almonds or hazelnuts? Chocolatey like dark cocoa or milk chocolate? Earthy like tobacco or cedar? The complexity of flavors is what makes specialty coffee so fascinating.</p>
+      </div>
+      <div class="step-image">
+        <div class="step-number">3</div>
+        <img src="https://img.freepik.com/premium-photo/low-angle-view-orange-fruits-basket-market_1048944-12401447.jpg?uid=R198666552&ga=GA1.1.395247667.1747458314&semt=ais_hybrid&w=740" alt="Coffee origin">
+      </div>
+    </div>
+    
+    <!-- Step 4 -->
+    <div class="tasting-step">
+      <div class="step-image">
+        <div class="step-number">4</div>
+        <img src="https://img.freepik.com/premium-photo/cropped-hand-person-pouriing-shoyu-sauce-bowl_1048944-23635410.jpg?uid=R198666552&ga=GA1.1.395247667.1747458314&semt=ais_hybrid&w=740" alt="Coffee aftertaste">
+      </div>
+      <div class="step-content">
+        <h3>Notice the Finish</h3>
+        <p>The finish — or aftertaste — lingers on your palate. Is it clean and crisp? Bold and smoky? The best coffees leave a lasting impression.</p>
+        <p>Pay attention to how long the flavors linger after you've swallowed. A short finish disappears quickly, while a long finish can last for several minutes. Also note the quality of the aftertaste — is it pleasant and complementary to the initial flavors, or does it turn bitter or sour?</p>
+      </div>
+    </div>
+    
+    <!-- Gallery -->
+    <div class="section-title">
+      <h2>Tasting Moments</h2>
+    </div>
+    
+    <div class="gallery">
+      <div class="gallery-item">
+        <img src="https://images.unsplash.com/photo-1609942732872-45a8262f48e4" alt="Cupping spoon">
+      </div>
+      <div class="gallery-item">
+        <img src="https://images.unsplash.com/photo-1511920170033-f8396924c348" alt="Coffee beans">
+      </div>
+      <div class="gallery-item">
+        <img src="https://images.unsplash.com/photo-1528825871115-3581a5387919" alt="Barista evaluating coffee">
+      </div>
+      <div class="gallery-item">
+        <img src="https://images.unsplash.com/photo-1587574293340-e3fdaef3e133" alt="Coffee notes">
+      </div>
+    </div>
+    
+    <!-- CTA Section -->
+    <div class="cta-box">
+      <div class="cta-content">
+        <h3>Join Our Coffee Tasting Experience</h3>
+        <p>Come visit our tasting room every Saturday at 10 AM. Let's train your palate and explore flavor together. No experience needed — just a love for great coffee!</p>
+        <a href="#" class="btn">Reserve Your Spot</a>
+      </div>
+    </div>
+  </main>
+  
+  <!-- Footer -->
+  <footer>
+    <div class="footer-content">
+      <div class="footer-section">
+        <h4>Jawi Coffee</h4>
+        <p>Discover the art of coffee with our specialty brews and tasting experiences. We source the finest beans from sustainable farms around the world.</p>
+        <div class="social-links">
+          <a href="#"><i class="fab fa-facebook-f"></i></a>
+          <a href="#"><i class="fab fa-instagram"></i></a>
+          <a href="#"><i class="fab fa-twitter"></i></a>
+          <a href="#"><i class="fab fa-pinterest"></i></a>
+        </div>
+      </div>
+      
+      <div class="footer-section">
+        <h4>Visit Us</h4>
+        <p><i class="fas fa-map-marker-alt"></i> 123 Coffee Lane, Seattle, WA</p>
+        <p><i class="fas fa-clock"></i> Mon-Fri: 7am-7pm, Sat-Sun: 8am-8pm</p>
+        <p><i class="fas fa-phone"></i> (206) 555-0123</p>
+        <p><i class="fas fa-envelope"></i> info@jawicoffee.com</p>
+      </div>
+      
+      <div class="footer-section">
+        <h4>Explore</h4>
+        <a href="#"><i class="fas fa-chevron-right"></i> Coffee Tasting Events</a>
+        <a href="#"><i class="fas fa-chevron-right"></i> Brewing Classes</a>
+        <a href="#"><i class="fas fa-chevron-right"></i> Coffee Subscription</a>
+        <a href="#"><i class="fas fa-chevron-right"></i> Our Sustainability Promise</a>
+        <a href="#"><i class="fas fa-chevron-right"></i> Wholesale Inquiry</a>
+      </div>
+    </div>
+    
+    <div class="copyright">
+      <p>&copy; 2025 Jawi Coffee Chronicles. Crafted with <i class="fas fa-heart" style="color: #e74c3c;"></i> and <i class="fas fa-coffee" style="color: var(--coffee-gold);"></i></p>
+    </div>
+  </footer>
+
+  <script>
+    // Toggle mobile menu
+    function toggleMobileMenu() {
+      const mobileNav = document.getElementById('mobileNav');
+      const hamburger = document.querySelector('.hamburger');
+      
+      mobileNav.classList.toggle('show');
+      hamburger.classList.toggle('active');
+    }
+    
+    // Hide mobile menu when clicking outside
+    document.addEventListener('click', function(event) {
+      const mobileNav = document.getElementById('mobileNav');
+      const hamburger = document.querySelector('.hamburger');
+      
+      if (mobileNav.classList.contains('show') && 
+          !event.target.closest('#mobileNav') && 
+          !event.target.closest('.hamburger')) {
+        mobileNav.classList.remove('show');
+        hamburger.classList.remove('active');
+      }
+    });
+    
+    // Sticky navbar functionality
+    let prevScrollpos = window.pageYOffset;
+    window.onscroll = function() {
+      const currentScrollPos = window.pageYOffset;
+      const navbar = document.getElementById("navbar");
+      
+      if (prevScrollpos > currentScrollPos) {
+        navbar.style.top = "0";
+      } else {
+        navbar.style.top = "-80px";
+      }
+      prevScrollpos = currentScrollPos;
+    };
+
+    // Create floating coffee beans
+    function createCoffeeBeans() {
+      const container = document.getElementById('coffeeBeans');
+      const beanCount = 20;
+      
+      for (let i = 0; i < beanCount; i++) {
+        const bean = document.createElement('div');
+        bean.classList.add('bean');
+        
+        // Random position and size
+        const size = Math.random() * 10 + 10;
+        bean.style.width = `${size}px`;
+        bean.style.height = `${size * 0.6}px`;
+        bean.style.left = `${Math.random() * 100}%`;
+        bean.style.animationDuration = `${Math.random() * 20 + 10}s`;
+        bean.style.animationDelay = `${Math.random() * 5}s`;
+        
+        container.appendChild(bean);
+      }
+    }
+    
+    // Initialize coffee beans
+    createCoffeeBeans();
+    
+    // Add scroll animations
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.animation = 'fadeInUp 0.8s forwards';
+        }
+      });
+    }, { threshold: 0.1 });
+    
+    // Observe elements
+    document.querySelectorAll('.tasting-step, .gallery-item, .cta-box').forEach(el => {
+      el.style.opacity = '0';
+      observer.observe(el);
+    });
+  </script>
+</body>
+</html>

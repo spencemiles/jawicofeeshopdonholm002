@@ -1,0 +1,1743 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jawi Coffee Shop - Menu</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Comic+Neue:wght@400;700&display=swap');
+        
+        body {
+            font-family: 'Comic Neue', cursive;
+            background-color: #ccc0ad;
+            color: #5A3921;
+        }
+        
+        .heading-font {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 700;
+        }
+        
+        .menu-category {
+            transition: all 0.3s ease;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 8px 15px rgba(233, 176, 129, 0.2);
+        }
+        
+        .menu-category:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 25px rgba(233, 176, 129, 0.3);
+        }
+        
+        .price-tag {
+            background-color: #c9b7aa;
+            color: #8B5A2B;
+            padding: 4px 12px;
+            border-radius: 15px;
+            font-size: 0.9rem;
+            font-weight: bold;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+        
+        .menu-item {
+            padding: 12px 0;
+            border-bottom: 2px dashed #E8D5C5;
+            transition: all 0.2s ease;
+        }
+        
+        .menu-item:hover {
+            transform: translateX(5px);
+        }
+        
+        .menu-item:last-child {
+            border-bottom: none;
+        }
+        
+        .hero-section {
+            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('https://img.freepik.com/free-photo/delicious-coffee-cup-indoors_23-2150691421.jpg?uid=R198666552&ga=GA1.1.395247667.1747458314&semt=ais_hybrid&w=740');
+            background-size: cover;
+            background-position: center;
+            border-radius: 0 0 20px 20px;
+        }
+        
+        .location-btn {
+            background-color: #E8A87C;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 8px rgba(232, 168, 124, 0.3);
+        }
+        
+        .location-btn:hover {
+            background-color: #D19468;
+            transform: scale(1.05);
+        }
+        
+        
+        
+        .category-title {
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            letter-spacing: 1px;
+        }
+        
+        .bubble {
+            position: absolute;
+            background-color: rgba(255,255,255,0.2);
+            border-radius: 50%;
+            animation: float 5s infinite ease-in-out;
+        }
+        
+        @keyframes float {
+            0% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(180deg); }
+            100% { transform: translateY(0) rotate(360deg); }
+        }
+        
+        .bubble:nth-child(1) {
+            width: 40px;
+            height: 40px;
+            top: 10%;
+            left: 10%;
+            animation-delay: 0s;
+        }
+        
+        .bubble:nth-child(2) {
+            width: 25px;
+            height: 25px;
+            top: 20%;
+            right: 15%;
+            animation-delay: 1s;
+        }
+        
+        .bubble:nth-child(3) {
+            width: 35px;
+            height: 35px;
+            bottom: 15%;
+            left: 15%;
+            animation-delay: 2s;
+        }
+        
+        .bubble:nth-child(4) {
+            width: 30px;
+            height: 30px;
+            bottom: 25%;
+            right: 10%;
+            animation-delay: 3s;
+        }
+        
+        .floating-icon {
+            animation: bounce 2s infinite ease-in-out;
+        }
+        
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header with Navigation -->
+     <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jawi Coffee Shop - Responsive Navigation</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Lato', sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #f5e8d1 0%, #e4d5b7 100%);
+            min-height: 100vh;
+            padding-top: 80px;
+            color: #463015;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        /* Header Styles */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 9999;
+        }
+        
+        #navbar {
+            background-color: #463015;
+            color: white;
+            transition: top 0.3s ease-in-out;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+        
+        .nav-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+            position: relative;
+        }
+        
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: white;
+            cursor: pointer;
+            user-select: none;
+            font-weight: bold;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            z-index: 10;
+        }
+        
+        .logo-container img {
+            height: 40px;
+            width: auto;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+        
+        .logo-text {
+            font-size: 1.3rem;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 1.8rem;
+            align-items: center;
+        }
+        
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            text-transform: uppercase;
+            font-size: 0.95rem;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+            padding: 8px 5px;
+            position: relative;
+            transition: color 0.3s ease;
+        }
+        
+        .nav-links a:hover {
+            color: #d4b78c;
+        }
+        
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #d4b78c;
+            transition: width 0.3s ease;
+        }
+        
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+        
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            z-index: 10;
+        }
+        
+        .hamburger span {
+            width: 28px;
+            height: 3px;
+            background: white;
+            border-radius: 2px;
+            transition: all 0.3s ease;
+        }
+        
+        .mobile-nav {
+            display: none;
+            flex-direction: column;
+            background-color: #5c4020;
+            padding: 1rem 2rem;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            width: 100%;
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+            z-index: 9;
+        }
+        
+        .mobile-nav a {
+            color: white;
+            padding: 0.8rem 0;
+            text-decoration: none;
+            border-bottom: 1px solid #6d4f2c;
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .mobile-nav a i {
+            width: 25px;
+            text-align: center;
+        }
+        
+        .mobile-nav a:last-child {
+            border-bottom: none;
+        }
+        
+        /* Active state for mobile menu */
+        .hamburger.active span:nth-child(1) {
+            transform: translateY(8px) rotate(45deg);
+        }
+        
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+        
+        .hamburger.active span:nth-child(3) {
+            transform: translateY(-8px) rotate(-45deg);
+        }
+        
+        /* Content Styles */
+        .hero {
+            text-align: center;
+            padding: 60px 20px;
+            background: linear-gradient(rgba(70, 48, 21, 0.8), rgba(70, 48, 21, 0.8)), url('https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?ixlib=rb-4.0.3') no-repeat center/cover;
+            border-radius: 15px;
+            margin-bottom: 40px;
+            color: white;
+        }
+        
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 30px;
+            line-height: 1.6;
+        }
+        
+        .btn {
+            display: inline-block;
+            background: #d4b78c;
+            color: #463015;
+            padding: 12px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            border: 2px solid #d4b78c;
+        }
+        
+        .btn:hover {
+            background: transparent;
+            color: #d4b78c;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin: 50px 0;
+        }
+        
+        .feature-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s ease;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .feature-img {
+            height: 200px;
+            background-color: #e4d5b7;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: #5c4020;
+        }
+        
+        .feature-content {
+            padding: 25px;
+        }
+        
+        .feature-content h3 {
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+            color: #463015;
+        }
+        
+        .feature-content p {
+            color: #6d4f2c;
+            line-height: 1.6;
+        }
+        
+        footer {
+            background: #463015;
+            color: #d4b78c;
+            text-align: center;
+            padding: 30px;
+            margin-top: 50px;
+            border-top-left-radius: 20px;
+            border-top-right-radius: 20px;
+        }
+        
+        /* Responsive Styles */
+        @media (max-width: 992px) {
+            .nav-links {
+                gap: 1.2rem;
+            }
+            
+            .logo-text {
+                font-size: 1.1rem;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .hamburger {
+                display: flex;
+            }
+            
+            .logo-text {
+                font-size: 1rem;
+            }
+            
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .hero p {
+                font-size: 1rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .nav-inner {
+                padding: 1rem;
+            }
+            
+            .logo-container img {
+                height: 35px;
+            }
+            
+            .logo-text {
+                font-size: 0.9rem;
+            }
+            
+            .hero {
+                padding: 40px 15px;
+            }
+            
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+            
+            .feature-content {
+                padding: 20px;
+            }
+        }
+        
+        /* Animation for mobile menu */
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .mobile-nav.show {
+            display: flex;
+            animation: slideDown 0.4s ease forwards;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <!-- Navigation Bar -->
+        <div id="navbar">
+            <div class="nav-inner">
+                <div class="logo-container">
+                    <img src="https://img.freepik.com/premium-vector/coffee-bean-drink-logo-design-brown-color-vector-illustration_638875-1264.jpg?uid=R198666552&ga=GA1.1.395247667.1747458314&semt=ais_hybrid&w=740" alt="Jawi Coffee Logo">
+                    <span class="logo-text">Jawi Coffee Shop</span>
+                </div>
+                
+                <div class="nav-links">
+                    <a href="index.html"><i class="fas fa-home"></i> Home</a>
+                    <a href="menu.html"><i class="fas fa-coffee"></i> Menu</a>
+                    <a href="ourstory.html"><i class="fas fa-book-open"></i> Our Story</a>
+                    <a href="location.html"><i class="fas fa-map-marker-alt"></i> Locations</a>
+                    <a href="gallery.html"><i class="fas fa-images"></i> Gallery</a>
+                    <a href="contact.html"><i class="fas fa-envelope"></i> Contact Us</a>
+                    <a href="blog1.html"><i class="fas fa-blog"></i> Blog</a>
+                </div>
+                
+                <div class="hamburger" onclick="toggleMobileMenu()">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+            
+            <div class="mobile-nav" id="mobileNav">
+                <a href="index.html"><i class="fas fa-home"></i> Home</a>
+                <a href="menu.html"><i class="fas fa-coffee"></i> Menu</a>
+                <a href="ourstory.html"><i class="fas fa-book-open"></i> Our Story</a>
+                <a href="location.html"><i class="fas fa-map-marker-alt"></i> Locations</a>
+                <a href="gallery.html"><i class="fas fa-images"></i> Gallery</a>
+                <a href="contact.html"><i class="fas fa-envelope"></i> Contact Us</a>
+                <a href="blog1.html"><i class="fas fa-blog"></i> Blog</a>
+            </div>
+        </div>
+    </header>
+    
+    
+    <script>
+        // Toggle mobile menu
+        function toggleMobileMenu() {
+            const mobileNav = document.getElementById('mobileNav');
+            const hamburger = document.querySelector('.hamburger');
+            
+            mobileNav.classList.toggle('show');
+            hamburger.classList.toggle('active');
+        }
+        
+        // Hide mobile menu when clicking outside
+        document.addEventListener('click', function(event) {
+            const mobileNav = document.getElementById('mobileNav');
+            const hamburger = document.querySelector('.hamburger');
+            
+            if (mobileNav.classList.contains('show') && 
+                !event.target.closest('#mobileNav') && 
+                !event.target.closest('.hamburger')) {
+                mobileNav.classList.remove('show');
+                hamburger.classList.remove('active');
+            }
+        });
+        
+        // Sticky navbar functionality
+        let prevScrollpos = window.pageYOffset;
+        window.onscroll = function() {
+            const currentScrollPos = window.pageYOffset;
+            const navbar = document.getElementById("navbar");
+            
+            if (prevScrollpos > currentScrollPos) {
+                navbar.style.top = "0";
+            } else {
+                navbar.style.top = "-80px"; // Adjust based on navbar height
+            }
+            prevScrollpos = currentScrollPos;
+        };
+    </script>
+
+
+    <!-- Hero Section -->
+    <section class="hero-section h-96 flex flex-col items-center justify-center text-center text-white relative overflow-hidden">
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        
+        <h1 class="heading-font text-4xl md:text-6xl mb-4">Delicious Drinks & Snacks</h1>
+        <p class="text-xl md:text-2xl mb-8 max-w-2xl px-4">Sip, savor, and enjoy our handcrafted beverages</p>
+        <div class="flex flex-col sm:flex-row gap-4">
+            <a href="#location" class="location-btn text-white font-bold py-3 px-6 rounded-full flex items-center justify-center transform hover:scale-105">
+                <i class="fas fa-map-marker-alt mr-2"></i> Find Us
+            </a>
+        </div>
+    </section>
+
+    <!-- Menu Section -->
+    <section id="menu" class="container mx-auto px-4 py-12">
+        <div class="text-center mb-12">
+            <h2 class="heading-font text-3xl md:text-4xl mb-4 text-amber-800">Our Menu</h2>
+            <div class="w-24 h-1 bg-amber-500 mx-auto rounded-full"></div>
+            <p class="text-amber-700 mt-4 max-w-2xl mx-auto">Discover our delicious selection of beverages made with love and the finest ingredients</p>
+        </div>
+        
+        <!-- Hot Coffee -->
+         <h2 id="latte">hot coffee
+<div class="mb-16 menu-category bg-white">
+  <!-- Top Image & Title -->
+  <div class="relative h-48 md:h-64 w-full rounded-t-xl overflow-hidden">
+    <img src="https://img.freepik.com/premium-photo/glass-cup-hot-steaming-latte-coffee_1091270-13860.jpg?uid=R198666552&ga=GA1.1.395247667.1747458314&semt=ais_hybrid&w=740" alt="Hot Coffee" class="w-full h-full object-cover">
+    <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-black/30 flex items-end justify-center pb-8">
+      <h3 class="text-3xl md:text-4xl font-bold text-amber-100">Hot Coffee</h3>
+    </div>
+  </div>
+
+  <!-- Horizontal Scrollable Cards -->
+   
+  <div class="overflow-x-auto whitespace-nowrap scroll-smooth p-6 space-x-6 flex snap-x snap-mandatory">
+
+    <!-- Espresso -->
+    <div class="inline-block bg-amber-50 rounded-xl p-4 w-64 snap-center shrink-0">
+      <img src="https://img.freepik.com/free-photo/steaming-cup-coffee-saucer-with-coffee-beans-scattered-around_9975-124454.jpg?uid=R198666552&ga=GA1.1.395247667.1747458314&semt=ais_hybrid&w=740" alt="Espresso" class="rounded-md mb-4 w-full h-36 object-cover">
+      <div class="text-amber-800 font-medium text-lg">Espresso</div>
+      <div class="text-sm mt-2">S: 180 Ksh</div>
+      <div class="text-sm">D: 180 Ksh</div>
+    </div>
+
+    <!-- Americano -->
+    <div class="inline-block bg-amber-50 rounded-xl p-4 w-64 snap-center shrink-0">
+      <img src="https://img.freepik.com/free-photo/hot-aroma-tea-wooden-plate-marble-table_114579-24812.jpg?uid=R198666552&ga=GA1.1.395247667.1747458314&semt=ais_hybrid&w=740" alt="Americano" class="rounded-md mb-4 w-full h-36 object-cover">
+      <div class="text-amber-800 font-medium text-lg">Americano</div>
+      <div class="text-sm mt-2">S: 200 Ksh</div>
+      <div class="text-sm">D: 200 Ksh</div>
+    </div>
+
+    <!-- Cappuccino -->
+    <div class="inline-block bg-amber-50 rounded-xl p-4 w-64 snap-center shrink-0">
+      <img src="https://img.freepik.com/free-photo/cup-coffee-with-heart-drawn-foam_1286-70.jpg?uid=R198666552&ga=GA1.1.395247667.1747458314&semt=ais_hybrid&w=740" alt="Cappuccino" class="rounded-md mb-4 w-full h-36 object-cover">
+      <div class="text-amber-800 font-medium text-lg">Cappuccino</div>
+      <div class="text-sm mt-2">S: 200 Ksh</div>
+      <div class="text-sm">D: 250 Ksh</div>
+    </div>
+
+    <!-- Latte -->
+    <div class="inline-block bg-amber-50 rounded-xl p-4 w-64 snap-center shrink-0">
+      <img src="https://img.freepik.com/free-photo/hot-drink-cinnamon-rolls_23-2148904749.jpg?uid=R198666552&ga=GA1.1.395247667.1747458314&semt=ais_hybrid&w=740" alt="Latte" class="rounded-md mb-4 w-full h-36 object-cover">
+      <div class="text-amber-800 font-medium text-lg">Latte</div>
+      <div class="text-sm mt-2">S: 200 Ksh</div>
+      <div class="text-sm">D: 250 Ksh</div>
+    </div>
+
+    <!-- Vanilla Latte -->
+    <div class="inline-block bg-amber-50 rounded-xl p-4 w-64 snap-center shrink-0">
+      <img src="https://img.freepik.com/free-photo/front-view-milk-tea-concept_23-2148555173.jpg?uid=R198666552&ga=GA1.1.395247667.1747458314&semt=ais_hybrid&w=740" alt="Vanilla Latte" class="rounded-md mb-4 w-full h-36 object-cover">
+      <div class="text-amber-800 font-medium text-lg">Vanilla Latte</div>
+      <div class="text-sm mt-2">S: 300 Ksh</div>
+      <div class="text-sm">D: 350 Ksh</div>
+    </div>
+
+    <!-- Caramel Macchiato -->
+    <div class="inline-block bg-amber-50 rounded-xl p-4 w-64 snap-center shrink-0">
+      <img src="https://img.freepik.com/free-photo/cup-coffee-plant-table_140725-8126.jpg?uid=R198666552&ga=GA1.1.395247667.1747458314&semt=ais_hybrid&w=740" alt="Caramel Macchiato" class="rounded-md mb-4 w-full h-36 object-cover">
+      <div class="text-amber-800 font-medium text-lg">Caramel Macchiato</div>
+      <div class="text-sm mt-2">S: 320 Ksh</div>
+      <div class="text-sm">D: 370 Ksh</div>
+    </div>
+
+    <!-- Matcha Latte -->
+    <div class="inline-block bg-amber-50 rounded-xl p-4 w-64 snap-center shrink-0">
+      <img src="https://img.freepik.com/free-photo/matcha-latte-cup_417767-46.jpg?uid=R198666552&ga=GA1.1.395247667.1747458314&semt=ais_hybrid&w=740" alt="Matcha Latte" class="rounded-md mb-4 w-full h-36 object-cover">
+      <div class="text-amber-800 font-medium text-lg">Matcha Latte</div>
+      <div class="text-sm mt-2">S: 350 Ksh</div>
+      <div class="text-sm">D: 400 Ksh</div>
+    </div>
+
+    <!-- Mocha -->
+    <div class="inline-block bg-amber-50 rounded-xl p-4 w-64 snap-center shrink-0">
+      <img src="https://img.freepik.com/free-photo/hot-mocha-coffee_1339-2386.jpg?uid=R198666552&ga=GA1.1.395247667.1747458314&semt=ais_hybrid&w=740" alt="Mocha" class="rounded-md mb-4 w-full h-36 object-cover">
+      <div class="text-amber-800 font-medium text-lg">Mocha</div>
+      <div class="text-sm mt-2">S: 200 Ksh</div>
+      <div class="text-sm">D: 250 Ksh</div>
+    </div>
+
+    <!-- Macchiato -->
+    <div class="inline-block bg-amber-50 rounded-xl p-4 w-64 snap-center shrink-0">
+      <img src="https://img.freepik.com/free-photo/salted-caramel-milkshake-glass-navy-background_140725-10635.jpg?uid=R198666552&ga=GA1.1.395247667.1747458314&semt=ais_hybrid&w=740" alt="Macchiato" class="rounded-md mb-4 w-full h-36 object-cover">
+      <div class="text-amber-800 font-medium text-lg">Macchiato</div>
+      <div class="text-sm mt-2">S: 240 Ksh</div>
+      <div class="text-sm">D: 250 Ksh</div>
+    </div>
+
+    <!-- Hot Chocolate -->
+    <div class="inline-block bg-amber-50 rounded-xl p-4 w-64 snap-center shrink-0">
+      <img src="https://img.freepik.com/free-photo/cup-tea-with-cinnamons-cookies-white-table_114579-30486.jpg?uid=R198666552&ga=GA1.1.395247667.1747458314&semt=ais_hybrid&w=740" alt="Hot Chocolate" class="rounded-md mb-4 w-full h-36 object-cover">
+      <div class="text-amber-800 font-medium text-lg">Hot Chocolate</div>
+      <div class="text-sm mt-2">S: 220 Ksh</div>
+      <div class="text-sm">D: 250 Ksh</div>
+    </div>
+
+  </div>
+</div>
+</h2>
+
+
+
+
+        <!-- Iced Coffee -->
+         <h2 id="latte">iced coffee>
+<div class="mb-16 menu-category bg-white">
+  <!-- Top Image & Title -->
+  <div class="relative h-48 md:h-64 w-full rounded-t-xl overflow-hidden">
+    <img src="https://img.freepik.com/free-photo/vertical-closeup-plastic-cup-cold-coffee-with-vanilla-cream_181624-57827.jpg?uid=R198666552&ga=GA1.1.395247667.1747458314&semt=ais_hybrid&w=740" alt="Iced Coffee" class="w-full h-full object-cover">
+    <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-black/30 flex items-end justify-center pb-8">
+      <h3 class="text-3xl md:text-4xl font-bold text-amber-100">Iced Coffee</h3>
+    </div>
+  </div>
+
+  <!-- Horizontal Scrollable Cards -->
+  <div class="overflow-x-auto whitespace-nowrap scroll-smooth p-6 space-x-6 flex snap-x snap-mandatory">
+
+    <!-- Item 1: Iced Latte -->
+    <div class="inline-block bg-amber-50 rounded-xl p-4 w-64 snap-center shrink-0">
+      <img src="https://img.freepik.com/free-photo/aromatic-frappuccino-table_23-2148900667.jpg?uid=R198666552&ga=GA1.1.395247667.1747458314&semt=ais_hybrid&w=740" alt="Iced Latte" class="rounded-md mb-4 w-full h-36 object-cover">
+      <div class="text-amber-800 font-medium text-lg">Iced Latte</div>
+      <div class="text-sm mt-2">350 Ksh</div>
+    </div>
+
+    <!-- Item 2: Iced Mocha -->
+    <div class="inline-block bg-amber-50 rounded-xl p-4 w-64 snap-center shrink-0">
+      <img src="https://img.freepik.com/free-photo/aromatic-frappuccino-table_23-2148900674.jpg?uid=R198666552&ga=GA1.1.395247667.1747458314&semt=ais_hybrid&w=740" alt="Iced Mocha" class="rounded-md mb-4 w-full h-36 object-cover">
+      <div class="text-amber-800 font-medium text-lg">Iced Mocha</div>
+      <div class="text-sm mt-2">350 Ksh</div>
+    </div>
+
+    <!-- Item 3: Iced Americano -->
+    <div class="inline-block bg-amber-50 rounded-xl p-4 w-64 snap-center shrink-0">
+      <img src="https://img.freepik.com/free-photo/delicious-coffee-cup-indoors_23-2150691347.jpg?uid=R198666552&ga=GA1.1.395247667.1747458314&semt=ais_hybrid&w=740" alt="Iced Americano" class="rounded-md mb-4 w-full h-36 object-cover">
+      <div class="text-amber-800 font-medium text-lg">Iced Americano</div>
+      <div class="text-sm mt-2">300 Ksh</div>
+    </div>
+
+    <!-- Item 4: Iced Caramel Macchiato -->
+    <div class="inline-block bg-amber-50 rounded-xl p-4 w-64 snap-center shrink-0">
+      <img src="https://img.freepik.com/free-photo/coffee-milkshake-with-whipped-cream_140725-43745.jpg?uid=R198666552&ga=GA1.1.395247667.1747458314&semt=ais_hybrid&w=740" alt="Iced Caramel Macchiato" class="rounded-md mb-4 w-full h-36 object-cover">
+      <div class="text-amber-800 font-medium text-lg">Iced Caramel Macchiato</div>
+      <div class="text-sm mt-2">370 Ksh</div>
+    </div>
+
+    <!-- Item 5: Iced Vanilla Latte -->
+    <div class="inline-block bg-amber-50 rounded-xl p-4 w-64 snap-center shrink-0">
+      <img src="https://img.freepik.com/premium-photo/fragrant-coffee-latte-glasses-cups-with-vanilla-pods-table-cafe_392895-115383.jpg?uid=R198666552&ga=GA1.1.395247667.1747458314&semt=ais_hybrid&w=740" alt="Iced Vanilla Latte" class="rounded-md mb-4 w-full h-36 object-cover">
+      <div class="text-amber-800 font-medium text-lg">Iced Vanilla Latte</div>
+      <div class="text-sm mt-2">350 Ksh</div>
+    </div>
+
+    <!-- Item 6: Iced Matcha Latte -->
+    <div class="inline-block bg-amber-50 rounded-xl p-4 w-64 snap-center shrink-0">
+      <img src="https://img.freepik.com/free-photo/green-tea-milkshake-with-whipped-cream_1150-18526.jpg?uid=R198666552&ga=GA1.1.395247667.1747458314&semt=ais_hybrid&w=740" alt="Iced Matcha Latte" class="rounded-md mb-4 w-full h-36 object-cover">
+      <div class="text-amber-800 font-medium text-lg">Iced Matcha Latte</div>
+      <div class="text-sm mt-2">400 Ksh</div>
+    </div>
+
+    <!-- Item 7: Iced Coffee Black -->
+    <div class="inline-block bg-amber-50 rounded-xl p-4 w-64 snap-center shrink-0">
+      <img src="https://img.freepik.com/premium-photo/close-up-coffee-table_1048944-29462886.jpg?uid=R198666552&ga=GA1.1.395247667.1747458314&semt=ais_hybrid&w=740" alt="Iced Coffee Black" class="rounded-md mb-4 w-full h-36 object-cover">
+      <div class="text-amber-800 font-medium text-lg">Iced Coffee Black</div>
+      <div class="text-sm mt-2">320 Ksh</div>
+    </div>
+
+  </div>
+</div>
+</h2>
+
+
+
+
+
+        <!-- Juice -->
+ <div class="mb-16 menu-category bg-white">
+          <h2 id="latte">fresh juices
+  <!-- Top Image & Title -->
+  <div class="relative h-48 md:h-64 w-full rounded-t-xl overflow-hidden">
+    <img src="https://img.freepik.com/free-photo/glass-fresh-juice-is-flanked-by-vibrant-berries-citrus_157027-4290.jpg?uid=R198666552&ga=GA1.1.395247667.1747458314&semt=ais_hybrid&w=740" alt="Juice" class="w-full h-full object-cover">
+    <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-black/30 flex items-end justify-center pb-8">
+      <h3 class="text-3xl md:text-4xl font-bold text-amber-100">Fresh Juice</h3>
+    </div>
+  </div>
+
+  <!-- Horizontal Scrollable Juice Cards -->
+  <div class="overflow-x-auto whitespace-nowrap scroll-smooth p-6 space-x-6 flex snap-x snap-mandatory">
+
+    <!-- Item 1 -->
+    <div class="inline-block bg-amber-50 rounded-xl p-4 w-64 snap-center shrink-0">
+      <img src="https://img.freepik.com/free-photo/fresh-orange-juice-glass-fresh-orange_1150-20691.jpg?uid=R198666552&ga=GA1.1.395247667.1747458314&semt=ais_hybrid&w=740" alt="Orange Juice" class="rounded-md mb-4 w-full h-36 object-cover">
+      <div class="text-amber-800 font-medium text-lg">Orange Juice</div>
+      <div class="text-sm mt-2">250 Ksh</div>
+    </div>
+
+    <!-- Item 2 -->
+    <div class="inline-block bg-amber-50 rounded-xl p-4 w-64 snap-center shrink-0">
+      <img src="https://img.freepik.com/free-photo/delicious-mango-still-life_23-2151542230.jpg?uid=R198666552&ga=GA1.1.395247667.1747458314&semt=ais_hybrid&w=740" alt="Mango Juice" class="rounded-md mb-4 w-full h-36 object-cover">
+      <div class="text-amber-800 font-medium text-lg">Mango Juice</div>
+      <div class="text-sm mt-2">250 Ksh</div>
+    </div>
+
+    <!-- Item 3 -->
+    <div class="inline-block bg-amber-50 rounded-xl p-4 w-64 snap-center shrink-0">
+      <img src="https://img.freepik.com/premium-photo/close-up-pineapple-with-juice-table_1048944-29776133.jpg?uid=R198666552&ga=GA1.1.395247667.1747458314&semt=ais_hybrid&w=740" alt="Pineapple Juice" class="rounded-md mb-4 w-full h-36 object-cover">
+      <div class="text-amber-800 font-medium text-lg">Pineapple Juice</div>
+      <div class="text-sm mt-2">250 Ksh</div>
+    </div>
+
+    <!-- Item 4 -->
+    <div class="inline-block bg-amber-50 rounded-xl p-4 w-64 snap-center shrink-0">
+      <img src="https://img.freepik.com/free-photo/delicious-pina-colada-cocktail-with-leaves_23-2150143185.jpg?uid=R198666552&ga=GA1.1.395247667.1747458314&semt=ais_hybrid&w=740" alt="Watermelon Juice" class="rounded-md mb-4 w-full h-36 object-cover">
+      <div class="text-amber-800 font-medium text-lg">Watermelon Juice</div>
+      <div class="text-sm mt-2">250 Ksh</div>
+    </div>
+
+    <!-- Item 5 -->
+    <div class="inline-block bg-amber-50 rounded-xl p-4 w-64 snap-center shrink-0">
+      <img src="https://img.freepik.com/free-photo/front-view-smoothie-with-cherries-strawberries_23-2148555284.jpg?uid=R198666552&ga=GA1.1.395247667.1747458314&semt=ais_hybrid&w=740" alt="Strawberry Juice" class="rounded-md mb-4 w-full h-36 object-cover">
+      <div class="text-amber-800 font-medium text-lg">Strawberry Juice</div>
+      <div class="text-sm mt-2">280 Ksh</div>
+    </div>
+
+    <!-- Item 6 -->
+    <div class="inline-block bg-amber-50 rounded-xl p-4 w-64 snap-center shrink-0">
+      <img src="https://img.freepik.com/free-photo/glass-passion-fruit-juice-fresh-passion-fruit-cut-half-place-wooden-floor_1150-35244.jpg?uid=R198666552&ga=GA1.1.395247667.1747458314&semt=ais_hybrid&w=740" alt="Passion Fruit Juice" class="rounded-md mb-4 w-full h-36 object-cover">
+      <div class="text-amber-800 font-medium text-lg">Passion Fruit Juice</div>
+      <div class="text-sm mt-2">280 Ksh</div>
+    </div>
+
+    <!-- Item 7 -->
+    <div class="inline-block bg-amber-50 rounded-xl p-4 w-64 snap-center shrink-0">
+      <img src="https://img.freepik.com/premium-photo/glass-green-juice-with-straw-it-green-liquid-it_1293074-12097.jpg?uid=R198666552&ga=GA1.1.395247667.1747458314&semt=ais_hybrid&w=740" alt="Avocado Juice" class="rounded-md mb-4 w-full h-36 object-cover">
+      <div class="text-amber-800 font-medium text-lg">Avocado Juice</div>
+      <div class="text-sm mt-2">300 Ksh</div>
+    </div>
+
+    <!-- Item 8 -->
+    <div class="inline-block bg-amber-50 rounded-xl p-4 w-64 snap-center shrink-0">
+      <img src="https://img.freepik.com/premium-photo/high-angle-view-food-tree_1048944-1027958.jpg?uid=R198666552&ga=GA1.1.395247667.1747458314&semt=ais_hybrid&w=740" alt="Mix Fruit Juice" class="rounded-md mb-4 w-full h-36 object-cover">
+      <div class="text-amber-800 font-medium text-lg">Mix Fruit Juice</div>
+      <div class="text-sm mt-2">300 Ksh</div>
+    </div>
+
+  </div>
+</div>
+</h2>
+
+
+        <!-- Milkshakes -->
+         <h2 id="latte">milkshakes
+       <div class="mb-16 menu-category bg-white">
+  <!-- Top Image & Title -->
+  <div class="relative h-48 md:h-64 w-full rounded-t-xl overflow-hidden">
+    <img src="https://img.freepik.com/premium-photo/delicious-milkshakes-wooden-table_1235831-119812.jpg?uid=R198666552&ga=GA1.1.395247667.1747458314&semt=ais_hybrid&w=740" alt="Milkshakes" class="w-full h-full object-cover">
+    <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-black/30 flex items-end justify-center pb-8">
+      <h3 class="text-3xl md:text-4xl font-bold text-amber-100">Milkshakes</h3>
+    </div>
+  </div>
+
+  <!-- Horizontal Scrollable Cards -->
+  <div class="overflow-x-auto whitespace-nowrap scroll-smooth p-6 space-x-6 flex snap-x snap-mandatory">
+
+    <!-- Item 1 -->
+    <div class="inline-block bg-amber-50 rounded-xl p-4 w-64 snap-center shrink-0">
+      <img src="https://img.freepik.com/free-photo/white-chocolate-mocha-glass-with-whipped-cream-straw_140725-10675.jpg?uid=R198666552&ga=GA1.1.395247667.1747458314&semt=ais_hybrid&w=740" alt="Vanilla Milkshake" class="rounded-md mb-4 w-full h-36 object-cover">
+      <div class="text-amber-800 font-medium text-lg">Vanilla Milkshake</div>
+      <div class="text-sm mt-2">300 Ksh</div>
+    </div>
+
+    <!-- Item 2 -->
+    <div class="inline-block bg-amber-50 rounded-xl p-4 w-64 snap-center shrink-0">
+      <img src="https://img.freepik.com/free-photo/front-view-chocolate-dessert-glass-with-straw_23-2148603311.jpg?uid=R198666552&ga=GA1.1.395247667.1747458314&semt=ais_hybrid&w=740" alt="Chocolate Milkshake" class="rounded-md mb-4 w-full h-36 object-cover">
+      <div class="text-amber-800 font-medium text-lg">Chocolate Milkshake</div>
+      <div class="text-sm mt-2">300 Ksh</div>
+    </div>
+
+    <!-- Item 3 -->
+    <div class="inline-block bg-amber-50 rounded-xl p-4 w-64 snap-center shrink-0">
+      <img src="https://img.freepik.com/free-photo/strawberry-milkshake-black-background_1268-25081.jpg?uid=R198666552&ga=GA1.1.395247667.1747458314&semt=ais_hybrid&w=740" alt="Strawberry Milkshake" class="rounded-md mb-4 w-full h-36 object-cover">
+      <div class="text-amber-800 font-medium text-lg">Strawberry Milkshake</div>
+      <div class="text-sm mt-2">300 Ksh</div>
+    </div>
+
+    <!-- Item 4 -->
+    <div class="inline-block bg-amber-50 rounded-xl p-4 w-64 snap-center shrink-0">
+      <img src="https://img.freepik.com/free-photo/close-up-banana-smoothie_23-2151006066.jpg?uid=R198666552&ga=GA1.1.395247667.1747458314&semt=ais_hybrid&w=740" alt="Banana Milkshake" class="rounded-md mb-4 w-full h-36 object-cover">
+      <div class="text-amber-800 font-medium text-lg">Banana Milkshake</div>
+      <div class="text-sm mt-2">300 Ksh</div>
+    </div>
+
+    <!-- Item 5 -->
+    <div class="inline-block bg-amber-50 rounded-xl p-4 w-64 snap-center shrink-0">
+      <img src="https://img.freepik.com/free-photo/milkshake-with-whipped-cream-oreo-cookie-top_140725-3457.jpg?uid=R198666552&ga=GA1.1.395247667.1747458314&semt=ais_hybrid&w=740" alt="Oreo Milkshake" class="rounded-md mb-4 w-full h-36 object-cover">
+      <div class="text-amber-800 font-medium text-lg">Oreo Milkshake</div>
+      <div class="text-sm mt-2">350 Ksh</div>
+    </div>
+
+    <!-- Item 6 -->
+    <div class="inline-block bg-amber-50 rounded-xl p-4 w-64 snap-center shrink-0">
+      <img src="https://img.freepik.com/premium-photo/delicious-creamy-chocolate-shake-with-scoop-vanilla-ice-cream-madness-without-background_85333-1031.jpg?uid=R198666552&ga=GA1.1.395247667.1747458314&semt=ais_hybrid&w=740" alt="Nutella Milkshake" class="rounded-md mb-4 w-full h-36 object-cover">
+      <div class="text-amber-800 font-medium text-lg">Nutella Milkshake</div>
+      <div class="text-sm mt-2">350 Ksh</div>
+    </div>
+
+    <!-- Item 7 -->
+    <div class="inline-block bg-amber-50 rounded-xl p-4 w-64 snap-center shrink-0">
+      <img src="https://img.freepik.com/free-photo/banana-milk-shake-table_140725-8349.jpg?uid=R198666552&ga=GA1.1.395247667.1747458314&semt=ais_hybrid&w=740" alt="Caramel Milkshake" class="rounded-md mb-4 w-full h-36 object-cover">
+      <div class="text-amber-800 font-medium text-lg">Caramel Milkshake</div>
+      <div class="text-sm mt-2">350 Ksh</div>
+    </div>
+
+    <!-- Item 8 -->
+    <div class="inline-block bg-amber-50 rounded-xl p-4 w-64 snap-center shrink-0">
+      <img src="https://img.freepik.com/free-photo/glass-chocolate-shake-table_23-2148922877.jpg?uid=R198666552&ga=GA1.1.395247667.1747458314&semt=ais_hybrid&w=740" alt="Mint Chocolate Milkshake" class="rounded-md mb-4 w-full h-36 object-cover">
+      <div class="text-amber-800 font-medium text-lg">Mint Chocolate Milkshake</div>
+      <div class="text-sm mt-2">350 Ksh</div>
+    </div>
+
+  </div>
+</div>
+</h2>
+
+
+        <!-- Protein Shakes -->
+         <h2 id="latte">protain shakes
+        <div class="mb-16 menu-category bg-white">
+  <!-- Top Image & Title -->
+  <div class="relative h-48 md:h-64 w-full rounded-t-xl overflow-hidden">
+    <img src="https://img.freepik.com/premium-photo/post-workout-meal-with-whey_611712-207.jpg?uid=R198666552&ga=GA1.1.395247667.1747458314&semt=ais_hybrid&w=740" alt="Protein Shakes" class="w-full h-full object-cover">
+    <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-black/30 flex items-end justify-center pb-8">
+      <h3 class="text-3xl md:text-4xl font-bold text-amber-100">Protein Shakes</h3>
+    </div>
+  </div>
+
+  <!-- Horizontal Scrollable Cards -->
+  <div class="overflow-x-auto whitespace-nowrap scroll-smooth p-6 space-x-6 flex snap-x snap-mandatory">
+
+    <!-- Item 1 -->
+    <div class="inline-block bg-amber-50 rounded-xl p-4 w-64 snap-center shrink-0">
+      <img src="https://img.freepik.com/free-photo/high-angle-delicious-banana-smoothie_23-2148858623.jpg?uid=R198666552&ga=GA1.1.395247667.1747458314&semt=ais_hybrid&w=740" alt="Vanilla Protein Shake" class="rounded-md mb-4 w-full h-36 object-cover">
+      <div class="text-amber-800 font-medium text-lg">Vanilla Protein Shake</div>
+      <div class="text-sm mt-2">400 Ksh</div>
+    </div>
+
+    <!-- Item 2 -->
+    <div class="inline-block bg-amber-50 rounded-xl p-4 w-64 snap-center shrink-0">
+      <img src="https://img.freepik.com/free-photo/front-view-cookies-with-chocolate-milk-glass-with-straw_23-2148356830.jpg?uid=R198666552&ga=GA1.1.395247667.1747458314&semt=ais_hybrid&w=740" alt="Chocolate Protein Shake" class="rounded-md mb-4 w-full h-36 object-cover">
+      <div class="text-amber-800 font-medium text-lg">Chocolate Protein Shake</div>
+      <div class="text-sm mt-2">400 Ksh</div>
+    </div>
+
+    <!-- Item 3 -->
+    <div class="inline-block bg-amber-50 rounded-xl p-4 w-64 snap-center shrink-0">
+      <img src="https://img.freepik.com/free-photo/strawberry-smoothie-white-wood_329181-1157.jpg?uid=R198666552&ga=GA1.1.395247667.1747458314&semt=ais_hybrid&w=740" alt="Strawberry Protein Shake" class="rounded-md mb-4 w-full h-36 object-cover">
+      <div class="text-amber-800 font-medium text-lg">Strawberry Protein Shake</div>
+      <div class="text-sm mt-2">400 Ksh</div>
+    </div>
+
+    <!-- Item 4 -->
+    <div class="inline-block bg-amber-50 rounded-xl p-4 w-64 snap-center shrink-0">
+      <img src="https://img.freepik.com/free-photo/close-up-banana-smoothie_23-2151006066.jpg?uid=R198666552&ga=GA1.1.395247667.1747458314&semt=ais_hybrid&w=740" alt="Banana Protein Shake" class="rounded-md mb-4 w-full h-36 object-cover">
+      <div class="text-amber-800 font-medium text-lg">Banana Protein Shake</div>
+      <div class="text-sm mt-2">400 Ksh</div>
+    </div>
+
+    <!-- Item 5 -->
+    <div class="inline-block bg-amber-50 rounded-xl p-4 w-64 snap-center shrink-0">
+      <img src="https://img.freepik.com/free-photo/close-up-banana-shake_23-2151006027.jpg?uid=R198666552&ga=GA1.1.395247667.1747458314&semt=ais_hybrid&w=740
+      " alt="Peanut Butter Protein Shake" class="rounded-md mb-4 w-full h-36 object-cover">
+      <div class="text-amber-800 font-medium text-lg">Peanut Butter Protein Shake</div>
+      <div class="text-sm mt-2">450 Ksh</div>
+    </div>
+
+    <!-- Item 6 -->
+    <div class="inline-block bg-amber-50 rounded-xl p-4 w-64 snap-center shrink-0">
+      <img src="https://img.freepik.com/premium-photo/isolated-white-shaker-bottle-with-whey-protein-powder-mixing-concept-fitness-nutrition-supplements-health-lifestyle_864588-152985.jpg?uid=R198666552&ga=GA1.1.395247667.1747458314&semt=ais_hybrid&w=740" alt="Coffee Protein Shake" class="rounded-md mb-4 w-full h-36 object-cover">
+      <div class="text-amber-800 font-medium text-lg">Coffee Protein Shake</div>
+      <div class="text-sm mt-2">450 Ksh</div>
+    </div>
+
+    <!-- Item 7 -->
+    <div class="inline-block bg-amber-50 rounded-xl p-4 w-64 snap-center shrink-0">
+      <img src="https://img.freepik.com/free-photo/composition-tasty-blueberries-smoothie_23-2148171007.jpg?uid=R198666552&ga=GA1.1.395247667.1747458314&semt=ais_hybrid&w=740" alt="Berry Blast Protein Shake" class="rounded-md mb-4 w-full h-36 object-cover">
+      <div class="text-amber-800 font-medium text-lg">Berry Blast Protein Shake</div>
+      <div class="text-sm mt-2">450 Ksh</div>
+    </div>
+
+    <!-- Item 8 -->
+    <div class="inline-block bg-amber-50 rounded-xl p-4 w-64 snap-center shrink-0">
+      <img src="https://img.freepik.com/free-photo/green-smoothie-wooden-table_23-2148858630.jpg?uid=R198666552&ga=GA1.1.395247667.1747458314&semt=ais_hybrid&w=740" alt="Green Protein Shake" class="rounded-md mb-4 w-full h-36 object-cover">
+      <div class="text-amber-800 font-medium text-lg">Green Protein Shake</div>
+      <div class="text-sm mt-2">450 Ksh</div>
+    </div>
+
+  </div>
+</div>
+</h2>
+
+        <!-- Chai & Tea -->
+         <h2 id="latte">chai & tea
+        <div class="mb-16 menu-category bg-white">
+  <!-- Top Image & Title -->
+  <div class="relative h-48 md:h-64 w-full rounded-t-xl overflow-hidden">
+    <img src="https://img.freepik.com/free-photo/steaming-cup-masala-chai-with-spices-coffee-beans-dark-surface_9975-124574.jpg?uid=R198666552&ga=GA1.1.395247667.1747458314&semt=ais_hybrid&w=740" alt="Chai & Tea" class="w-full h-full object-cover">
+    <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-black/30 flex items-end justify-center pb-8">
+      <h3 class="text-3xl md:text-4xl font-bold text-amber-100">Chai & Tea</h3>
+    </div>
+  </div>
+
+  <!-- Horizontal Scrollable Items -->
+  <div class="overflow-x-auto whitespace-nowrap scroll-smooth p-6 space-x-6 flex snap-x snap-mandatory">
+
+    <!-- Item 1 -->
+    <div class="inline-block bg-amber-50 rounded-xl p-4 w-64 snap-center shrink-0">
+      <img src="https://img.freepik.com/premium-photo/masala-tea-with-spices_117406-916.jpg?uid=R198666552&ga=GA1.1.395247667.1747458314&semt=ais_hybrid&w=740" alt="Masala Chai" class="rounded-md mb-4 w-full h-36 object-cover">
+      <div class="text-amber-800 font-medium text-lg">Masala Chai</div>
+      <div class="text-sm mt-2">150 Ksh</div>
+    </div>
+
+    <!-- Item 2 -->
+    <div class="inline-block bg-amber-50 rounded-xl p-4 w-64 snap-center shrink-0">
+      <img src="https://img.freepik.com/premium-photo/glass-ginger-tea-ginger_1048944-21623977.jpg?uid=R198666552&ga=GA1.1.395247667.1747458314&semt=ais_hybrid&w=740" alt="Ginger Tea" class="rounded-md mb-4 w-full h-36 object-cover">
+      <div class="text-amber-800 font-medium text-lg">Ginger Tea</div>
+      <div class="text-sm mt-2">150 Ksh</div>
+    </div>
+
+    <!-- Item 3 -->
+    <div class="inline-block bg-amber-50 rounded-xl p-4 w-64 snap-center shrink-0">
+      <img src="https://img.freepik.com/free-photo/black-tea-with-dry-tea-teapot-wooden-surface-side-view_176474-6302.jpg?uid=R198666552&ga=GA1.1.395247667.1747458314&semt=ais_hybrid&w=740" alt="Black Tea" class="rounded-md mb-4 w-full h-36 object-cover">
+      <div class="text-amber-800 font-medium text-lg">Black Tea</div>
+      <div class="text-sm mt-2">120 Ksh</div>
+    </div>
+
+    <!-- Item 4 -->
+    <div class="inline-block bg-amber-50 rounded-xl p-4 w-64 snap-center shrink-0">
+      <img src="https://img.freepik.com/free-photo/leaf-plate-wood-object-healthy-eating_1172-451.jpg?uid=R198666552&ga=GA1.1.395247667.1747458314&semt=ais_hybrid&w=740" alt="Green Tea" class="rounded-md mb-4 w-full h-36 object-cover">
+      <div class="text-amber-800 font-medium text-lg">Green Tea</div>
+      <div class="text-sm mt-2">150 Ksh</div>
+    </div>
+
+    <!-- Item 5 -->
+    <div class="inline-block bg-amber-50 rounded-xl p-4 w-64 snap-center shrink-0">
+      <img src="https://img.freepik.com/free-photo/peppermint-tea-glass-ready-drink_1150-38036.jpg?uid=R198666552&ga=GA1.1.395247667.1747458314&semt=ais_hybrid&w=740" alt="Mint Tea" class="rounded-md mb-4 w-full h-36 object-cover">
+      <div class="text-amber-800 font-medium text-lg">Mint Tea</div>
+      <div class="text-sm mt-2">150 Ksh</div>
+    </div>
+
+    <!-- Item 6 -->
+    <div class="inline-block bg-amber-50 rounded-xl p-4 w-64 snap-center shrink-0">
+      <img src="https://img.freepik.com/premium-photo/cup-tea-with-chamomile-flowers-rustic-wooden-background_166342-743.jpg?uid=R198666552&ga=GA1.1.395247667.1747458314&semt=ais_hybrid&w=740" alt="Chamomile Tea" class="rounded-md mb-4 w-full h-36 object-cover">
+      <div class="text-amber-800 font-medium text-lg">Chamomile Tea</div>
+      <div class="text-sm mt-2">180 Ksh</div>
+    </div>
+
+    <!-- Item 7 -->
+    <div class="inline-block bg-amber-50 rounded-xl p-4 w-64 snap-center shrink-0">
+      <img src="https://img.freepik.com/free-photo/black-tea-with-dry-tea-teapot-wooden-surface-side-view_176474-6302.jpg?uid=R198666552&ga=GA1.1.395247667.1747458314&semt=ais_hybrid&w=740" alt="Earl Grey" class="rounded-md mb-4 w-full h-36 object-cover">
+      <div class="text-amber-800 font-medium text-lg">Earl Grey</div>
+      <div class="text-sm mt-2">180 Ksh</div>
+    </div>
+
+    <!-- Item 8 -->
+    <div class="inline-block bg-amber-50 rounded-xl p-4 w-64 snap-center shrink-0">
+      <img src="https://img.freepik.com/premium-photo/hot-black-tea-with-lemon-mint-wooden-table_221774-7439.jpg?uid=R198666552&ga=GA1.1.395247667.1747458314&semt=ais_hybrid&w=740" alt="Herbal Tea" class="rounded-md mb-4 w-full h-36 object-cover">
+      <div class="text-amber-800 font-medium text-lg">Herbal Tea</div>
+      <div class="text-sm mt-2">180 Ksh</div>
+    </div>
+
+  </div>
+</div>
+</h2>
+
+
+        <!-- Boba Drinks Section -->
+         
+        <div class="text-center mb-12">
+            <h3 class="heading-font text-3xl mb-4 text-amber-800">Bubble Tea Specialties</h3>
+            <div class="w-24 h-1 bg-amber-500 mx-auto rounded-full"></div>
+            <p class="text-amber-700 mt-4 max-w-2xl mx-auto">Our signature boba drinks with chewy tapioca pearls</p>
+        </div>
+        
+        <!-- Milk Tea Boba -->
+         <h2 id="latte">milk tea boba
+        <div class="mb-12 menu-category bg-white">
+  <!-- Top Image & Title -->
+  <div class="relative h-48 md:h-64 w-full rounded-t-xl overflow-hidden">
+    <img src="https://img.freepik.com/free-photo/fresh-creamy-milkshake-wooden-table-generative-ai_188544-12342.jpg?uid=R198666552&ga=GA1.1.395247667.1747458314&semt=ais_hybrid&w=740" alt="Milk Tea Boba" class="w-full h-full object-cover">
+    <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-black/30 flex items-end justify-center pb-8">
+      <h3 class="text-3xl md:text-4xl font-bold text-amber-100">Milk Tea Boba</h3>
+    </div>
+  </div>
+
+  <!-- Horizontal Scrollable Items -->
+  <div class="overflow-x-auto whitespace-nowrap scroll-smooth p-6 space-x-6 flex snap-x snap-mandatory">
+
+    <!-- Item 1 -->
+    <div class="inline-block bg-amber-50 rounded-xl p-4 w-64 snap-center shrink-0">
+      <img src="https://img.freepik.com/free-photo/front-view-milk-tea-concept_23-2148555173.jpg?uid=R198666552&ga=GA1.1.395247667.1747458314&semt=ais_hybrid&w=740" alt="Classic Milk Tea" class="rounded-md mb-4 w-full h-36 object-cover">
+      <div class="text-amber-800 font-medium text-lg">Classic Milk Tea</div>
+      <div class="text-sm mt-2">350 Ksh</div>
+    </div>
+
+    <!-- Item 2 -->
+    <div class="inline-block bg-amber-50 rounded-xl p-4 w-64 snap-center shrink-0">
+      <img src="https://img.freepik.com/free-photo/close-up-chocolate-milkshake_23-2148635643.jpg?uid=R198666552&ga=GA1.1.395247667.1747458314&semt=ais_hybrid&w=740" alt="Honey Milk Tea" class="rounded-md mb-4 w-full h-36 object-cover">
+      <div class="text-amber-800 font-medium text-lg">Honey Milk Tea</div>
+      <div class="text-sm mt-2">380 Ksh</div>
+    </div>
+
+    <!-- Item 3 -->
+    <div class="inline-block bg-amber-50 rounded-xl p-4 w-64 snap-center shrink-0">
+      <img src="https://img.freepik.com/free-photo/lavender-latte_23-2151961964.jpg?uid=R198666552&ga=GA1.1.395247667.1747458314&semt=ais_hybrid&w=740" alt="Taro Milk Tea" class="rounded-md mb-4 w-full h-36 object-cover">
+      <div class="text-amber-800 font-medium text-lg">Taro Milk Tea</div>
+      <div class="text-sm mt-2">380 Ksh</div>
+    </div>
+
+    <!-- Item 4 -->
+    <div class="inline-block bg-amber-50 rounded-xl p-4 w-64 snap-center shrink-0">
+      <img src="https://img.freepik.com/premium-photo/close-up-drink-glass-cutting-board-table_1048944-28194070.jpg?uid=R198666552&ga=GA1.1.395247667.1747458314&semt=ais_hybrid&w=740
+      " alt="Thai Milk Tea" class="rounded-md mb-4 w-full h-36 object-cover">
+      <div class="text-amber-800 font-medium text-lg">Thai Milk Tea</div>
+      <div class="text-sm mt-2">380 Ksh</div>
+    </div>
+
+    <!-- Item 5 -->
+    <div class="inline-block bg-amber-50 rounded-xl p-4 w-64 snap-center shrink-0">
+      <img src="https://img.freepik.com/free-photo/fresh-apple-juice-side-view_140725-11250.jpg?uid=R198666552&ga=GA1.1.395247667.1747458314&semt=ais_hybrid&w=740" alt="Matcha Milk Tea" class="rounded-md mb-4 w-full h-36 object-cover">
+      <div class="text-amber-800 font-medium text-lg">Matcha Milk Tea</div>
+      <div class="text-sm mt-2">400 Ksh</div>
+    </div>
+
+    <!-- Item 6 -->
+    <div class="inline-block bg-amber-50 rounded-xl p-4 w-64 snap-center shrink-0">
+      <img src="https://img.freepik.com/free-photo/iced-coffee-with-chocolate-syrup_1150-18528.jpg?uid=R198666552&ga=GA1.1.395247667.1747458314&semt=ais_hybrid&w=740" alt="Brown Sugar Milk Tea" class="rounded-md mb-4 w-full h-36 object-cover">
+      <div class="text-amber-800 font-medium text-lg">Brown Sugar Milk Tea</div>
+      <div class="text-sm mt-2">400 Ksh</div>
+    </div>
+
+  </div>
+</div>
+</h2>
+<!-- Floating Menu Section with Images -->
+<section class="py-16 bg-gradient-to-b from-amber-50 to-white">
+  <h2 id="latte">desserts
+  <h2 class="text-4xl font-bold text-center text-amber-900 mb-12 animate-fade-in-up">Premium Desserts</h2>
+
+  <div class="container mx-auto px-4 grid gap-10 md:grid-cols-2 lg:grid-cols-3">
+
+    <!-- Card 1 -->
+    <div class="relative group bg-white p-6 rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 opacity-0 translate-y-10 animate-slide-in">
+      <img src="https://img.freepik.com/free-photo/delicious-peanut-butter-jar_23-2150408155.jpg?uid=R198666552&ga=GA1.1.395247667.1747458314&semt=ais_hybrid&w=740" alt="Lotus Caramel Biscoff" class="rounded-xl mb-4 w-full h-40 object-cover">
+      <h3 class="text-2xl font-bold text-amber-800 mb-2">Lotus Caramel Biscoff</h3>
+      <ul class="text-gray-700 space-y-1 ml-4 list-disc">
+        <li>Regular - Ksh 550</li>
+        <li>Large - Ksh 650</li>
+      </ul>
+    </div>
+
+    <!-- Card 2 -->
+    <div class="relative group bg-white p-6 rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 opacity-0 translate-y-10 animate-slide-in">
+      <img src="https://img.freepik.com/free-photo/top-view-red-strawberry-cake-delicious-with-tea-table-fruit-color-cake-biscuit-sweet_140725-28319.jpg?uid=R198666552&ga=GA1.1.395247667.1747458314&semt=ais_hybrid&w=740" alt="Red Velvet" class="rounded-xl mb-4 w-full h-40 object-cover">
+      <h3 class="text-2xl font-bold text-rose-800 mb-2">Red Velvet</h3>
+      <ul class="text-gray-700 space-y-1 ml-4 list-disc">
+        <li>Regular - Ksh 550</li>
+        <li>Large - Ksh 650</li>
+      </ul>
+    </div>
+
+    <!-- Card 3 -->
+    <div class="relative group bg-white p-6 rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 opacity-0 translate-y-10 animate-slide-in">
+      <img src="https://img.freepik.com/free-photo/chocolate-cookies-dark-white-chocolate-coffee-beans_8353-1497.jpg?uid=R198666552&ga=GA1.1.395247667.1747458314&semt=ais_hybrid&w=740" alt="Double Chocolate" class="rounded-xl mb-4 w-full h-40 object-cover">
+      <h3 class="text-2xl font-bold text-yellow-900 mb-2">Double Chocolate</h3>
+      <ul class="text-gray-700 space-y-1 ml-4 list-disc">
+        <li>Regular - Ksh 500</li>
+        <li>Large - Ksh 650</li>
+      </ul>
+    </div>
+
+    <!-- Card 4 -->
+    <div class="relative group bg-white p-6 rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 opacity-0 translate-y-10 animate-slide-in">
+      <img src="https://img.freepik.com/free-photo/delicious-biscuit-ice-cream_23-2150735552.jpg?uid=R198666552&ga=GA1.1.395247667.1747458314&semt=ais_hybrid&w=740" alt="Cookies & Cream" class="rounded-xl mb-4 w-full h-40 object-cover">
+      <h3 class="text-2xl font-bold text-slate-800 mb-2">Cookies & Cream</h3>
+      <ul class="text-gray-700 space-y-1 ml-4 list-disc">
+        <li>Regular - Ksh 550</li>
+        <li>Large - Ksh 650</li>
+      </ul>
+    </div>
+
+    <!-- Card 5 -->
+    <div class="relative group bg-white p-6 rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 opacity-0 translate-y-10 animate-slide-in">
+      <img src="https://img.freepik.com/free-photo/ground-milled-crushed-pistachios-bowl_176474-1026.jpg?uid=R198666552&ga=GA1.1.395247667.1747458314&semt=ais_hybrid&w=740" alt="Pistachio" class="rounded-xl mb-4 w-full h-40 object-cover">
+      <h3 class="text-2xl font-bold text-green-800 mb-2">Pistachio</h3>
+      <ul class="text-gray-700 space-y-1 ml-4 list-disc">
+        <li>Regular - Ksh 650</li>
+        <li>Large - Ksh 750</li>
+      </ul>
+    </div>
+
+    <!-- Card 6 -->
+    <div class="relative group bg-white p-6 rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 opacity-0 translate-y-10 animate-slide-in">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRnBYJPyDDsDi_eqrgs0NWCgIu7lcZP8Adv_w&s" alt="Kit Kat" class="rounded-xl mb-4 w-full h-40 object-cover">
+      <h3 class="text-2xl font-bold text-purple-800 mb-2">Kit Kat</h3>
+      <ul class="text-gray-700 space-y-1 ml-4 list-disc">
+        <li>Regular - Ksh 550</li>
+        <li>Large - Ksh 650</li>
+      </ul>
+    </div>
+
+  </div>
+</h2>
+</section>
+
+<!-- Animation Styles -->
+<style>
+  @keyframes slide-in {
+    0% {
+      opacity: 0;
+      transform: translateY(40px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .animate-slide-in {
+    animation: slide-in 1s ease-out forwards;
+    animation-delay: calc(var(--animation-order, 0) * 0.2s);
+  }
+
+  .animate-fade-in-up {
+    animation: fade-in-up 1s ease-out forwards;
+  }
+
+  @keyframes fade-in-up {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+</style>
+
+<script>
+  // Trigger animations on scroll
+  document.addEventListener("DOMContentLoaded", function () {
+    const items = document.querySelectorAll(".animate-slide-in");
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach((entry, index) => {
+        if (entry.isIntersecting) {
+          entry.target.style.setProperty('--animation-order', index);
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.1 });
+
+    items.forEach(item => {
+      observer.observe(item);
+    });
+  });
+</script>
+<br>
+<br>
+<br>
+
+        <!-- Coffee Boba -->
+         <h2 id="latte">coffee boba
+        <div class="mb-12 menu-category bg-white">
+  <!-- Top Image & Title -->
+  <div class="relative h-48 md:h-64 w-full rounded-t-xl overflow-hidden">
+    <img src="https://img.freepik.com/premium-photo/taiwan-milk-tea-with-bubble_1339-73175.jpg?uid=R198666552&ga=GA1.1.395247667.1747458314&semt=ais_hybrid&w=740" alt="Coffee Boba" class="w-full h-full object-cover">
+    <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-black/30 flex items-end justify-center pb-8">
+      <h3 class="text-3xl md:text-4xl font-bold text-amber-100">Coffee Boba</h3>
+    </div>
+  </div>
+
+  <!-- Horizontal Scroll Menu -->
+  <div class="overflow-x-auto whitespace-nowrap scroll-smooth p-6 space-x-6 flex snap-x snap-mandatory">
+
+    <!-- Item 1 -->
+    <div class="inline-block bg-amber-50 rounded-xl p-4 w-64 snap-center shrink-0">
+      <img src="https://img.freepik.com/free-photo/delicious-iced-coffee-tray-arrangement_23-2149600735.jpg?uid=R198666552&ga=GA1.1.395247667.1747458314&semt=ais_hybrid&w=740" alt="Coffee Milk Tea" class="rounded-md mb-4 w-full h-36 object-cover">
+      <div class="text-amber-800 font-medium text-lg">Coffee Milk Tea</div>
+      <div class="text-sm mt-2">380 Ksh</div>
+    </div>
+
+    <!-- Item 2 -->
+    <div class="inline-block bg-amber-50 rounded-xl p-4 w-64 snap-center shrink-0">
+      <img src="https://img.freepik.com/premium-photo/close-up-cake-table-against-white-background_1048944-17158893.jpg?uid=R198666552&ga=GA1.1.395247667.1747458314&semt=ais_hybrid&w=740" alt="Mocha Boba" class="rounded-md mb-4 w-full h-36 object-cover">
+      <div class="text-amber-800 font-medium text-lg">Mocha Boba</div>
+      <div class="text-sm mt-2">400 Ksh</div>
+    </div>
+
+    <!-- Item 3 -->
+    <div class="inline-block bg-amber-50 rounded-xl p-4 w-64 snap-center shrink-0">
+      <img src="https://img.freepik.com/premium-photo/taiwan-milk-tea-with-bubble_1339-100689.jpg?uid=R198666552&ga=GA1.1.395247667.1747458314&semt=ais_hybrid&w=740" alt="Caramel Coffee Boba" class="rounded-md mb-4 w-full h-36 object-cover">
+      <div class="text-amber-800 font-medium text-lg">Caramel Coffee Boba</div>
+      <div class="text-sm mt-2">400 Ksh</div>
+    </div>
+
+    <!-- Item 4 -->
+    <div class="inline-block bg-amber-50 rounded-xl p-4 w-64 snap-center shrink-0">
+      <img src="https://img.freepik.com/free-photo/iced-black-coffee-with-passion-fruit-wooden-surface_1150-44412.jpg?uid=R198666552&ga=GA1.1.395247667.1747458314&semt=ais_hybrid&w=740" alt="Vietnamese Coffee Boba" class="rounded-md mb-4 w-full h-36 object-cover">
+      <div class="text-amber-800 font-medium text-lg">Vietnamese Coffee Boba</div>
+      <div class="text-sm mt-2">420 Ksh</div>
+    </div>
+
+    <!-- Item 5 -->
+    <div class="inline-block bg-amber-50 rounded-xl p-4 w-64 snap-center shrink-0">
+      <img src="https://img.freepik.com/free-photo/coffee-milkshake-with-whipped-cream_140725-43745.jpg?uid=R198666552&ga=GA1.1.395247667.1747458314&semt=ais_hybrid&w=740" alt="Hazelnut Coffee Boba" class="rounded-md mb-4 w-full h-36 object-cover">
+      <div class="text-amber-800 font-medium text-lg">Hazelnut Coffee Boba</div>
+      <div class="text-sm mt-2">420 Ksh</div>
+    </div>
+
+    <!-- Item 6 -->
+    <div class="inline-block bg-amber-50 rounded-xl p-4 w-64 snap-center shrink-0">
+      <img src="https://img.freepik.com/premium-photo/illustration-tall-plastic-cup-milk-tea-with-black-pearls-straw-lid-white-backgro_943657-18030.jpg?uid=R198666552&ga=GA1.1.395247667.1747458314&semt=ais_hybrid&w=740" alt="Iced Coffee Boba" class="rounded-md mb-4 w-full h-36 object-cover">
+      <div class="text-amber-800 font-medium text-lg">Iced Coffee Boba</div>
+      <div class="text-sm mt-2">380 Ksh</div>
+    </div>
+
+  </div>
+</div>
+</h2>
+
+
+        <!-- Fruit Tea Boba -->
+         <h2 id="latte">fruit tea boba
+        <div class="mb-12 menu-category bg-white">
+  <!-- Top Image & Title -->
+  <div class="relative h-48 md:h-64 w-full rounded-t-xl overflow-hidden">
+    <img src="https://img.freepik.com/premium-photo/there-is-glass-fruit-juice-with-straw-straw-generative-ai_958124-17948.jpg?uid=R198666552&ga=GA1.1.395247667.1747458314&semt=ais_hybrid&w=740" alt="Fruit Tea Boba" class="w-full h-full object-cover">
+    <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-black/30 flex items-end justify-center pb-8">
+      <h3 class="text-3xl md:text-4xl font-bold text-amber-100">Fruit Tea Boba</h3>
+    </div>
+  </div>
+
+  <!-- Horizontal Scroll Menu -->
+  <div class="overflow-x-auto whitespace-nowrap scroll-smooth p-6 space-x-6 flex snap-x snap-mandatory">
+    
+    <!-- Item 1 -->
+    <div class="inline-block bg-amber-50 rounded-xl p-4 w-64 snap-center shrink-0">
+      <img src="https://img.freepik.com/premium-photo/taiwan-milk-tea-with-bubble-strawberries-wooden-background_220770-561.jpg?uid=R198666552&ga=GA1.1.395247667.1747458314&semt=ais_hybrid&w=740" alt="Strawberry Boba" class="rounded-md mb-4 w-full h-36 object-cover">
+      <div class="text-amber-800 font-medium text-lg">Strawberry Boba</div>
+      <div class="text-sm mt-2">350 Ksh</div>
+    </div>
+
+    <!-- Item 2 -->
+    <div class="inline-block bg-amber-50 rounded-xl p-4 w-64 snap-center shrink-0">
+      <img src="https://img.freepik.com/premium-photo/glass-mango-coconut-water-smoothie-b_1169880-142978.jpg?uid=R198666552&ga=GA1.1.395247667.1747458314&semt=ais_hybrid&w=740" alt="Mango Boba" class="rounded-md mb-4 w-full h-36 object-cover">
+      <div class="text-amber-800 font-medium text-lg">Mango Boba</div>
+      <div class="text-sm mt-2">350 Ksh</div>
+    </div>
+
+    <!-- Item 3 -->
+    <div class="inline-block bg-amber-50 rounded-xl p-4 w-64 snap-center shrink-0">
+      <img src="https://img.freepik.com/premium-photo/fresh-iced-passion-fruit-juice_1339-38430.jpg?uid=R198666552&ga=GA1.1.395247667.1747458314&semt=ais_hybrid&w=740" alt="Passion Fruit Boba" class="rounded-md mb-4 w-full h-36 object-cover">
+      <div class="text-amber-800 font-medium text-lg">Passion Fruit Boba</div>
+      <div class="text-sm mt-2">350 Ksh</div>
+    </div>
+
+    <!-- Item 4 -->
+    <div class="inline-block bg-amber-50 rounded-xl p-4 w-64 snap-center shrink-0">
+      <img src="https://img.freepik.com/free-photo/lychee-juice-lychee-fruit_1150-13635.jpg?uid=R198666552&ga=GA1.1.395247667.1747458314&semt=ais_hybrid&w=740" alt="Lychee Boba" class="rounded-md mb-4 w-full h-36 object-cover">
+      <div class="text-amber-800 font-medium text-lg">Lychee Boba</div>
+      <div class="text-sm mt-2">380 Ksh</div>
+    </div>
+
+    <!-- Item 5 -->
+    <div class="inline-block bg-amber-50 rounded-xl p-4 w-64 snap-center shrink-0">
+      <img src="https://img.freepik.com/free-photo/fresh-yellow-drink-wooden-table-with-decorations-generative-ai_188544-12406.jpg?uid=R198666552&ga=GA1.1.395247667.1747458314&semt=ais_hybrid&w=740" alt="Peach Boba" class="rounded-md mb-4 w-full h-36 object-cover">
+      <div class="text-amber-800 font-medium text-lg">Peach Boba</div>
+      <div class="text-sm mt-2">380 Ksh</div>
+    </div>
+
+    <!-- Item 6 -->
+    <div class="inline-block bg-amber-50 rounded-xl p-4 w-64 snap-center shrink-0">
+      <img src="https://img.freepik.com/free-photo/fruit-salad-with-crackers-cup-cocktail_114579-21912.jpg?uid=R198666552&ga=GA1.1.395247667.1747458314&semt=ais_hybrid&w=740" alt="Mixed Fruit Boba" class="rounded-md mb-4 w-full h-36 object-cover">
+      <div class="text-amber-800 font-medium text-lg">Mixed Fruit Boba</div>
+      <div class="text-sm mt-2">400 Ksh</div>
+    </div>
+
+  </div>
+</div>
+</h2>
+
+<!-- Mocktail Boba -->
+ <h2 id="latte">mocktail boba
+<div class="mb-16 menu-category bg-white">
+  <!-- Top Image & Title -->
+  <div class="relative h-48 md:h-64 w-full rounded-t-xl overflow-hidden">
+    <img src="https://img.freepik.com/free-photo/homemade-dessert-sweet-fresh-fruit-parfait-wooden-table-generated-by-artificial-intelligence_188544-129015.jpg?uid=R198666552&ga=GA1.1.395247667.1747458314&semt=ais_hybrid&w=740" alt="Mocktail Boba" class="w-full h-full object-cover">
+    <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-black/30 flex items-end justify-center pb-8">
+      <h3 class="text-3xl md:text-4xl font-bold text-amber-100">Mocktail Boba</h3>
+    </div>
+  </div>
+
+  <!-- Horizontal Scrollable Cards -->
+  <div class="overflow-x-auto whitespace-nowrap scroll-smooth p-6 space-x-6 flex snap-x snap-mandatory">
+
+    <!-- Item 1: Pinacolado -->
+    <div class="inline-block bg-amber-50 rounded-xl p-4 w-64 snap-center shrink-0">
+      <img src="https://img.freepik.com/free-photo/milky-cocktail-glass-with-pinapple-slice-cherry_114579-2729.jpg?uid=R198666552&ga=GA1.1.395247667.1747458314&semt=ais_hybrid&w=740" alt="Pinacolado Boba" class="rounded-md mb-4 w-full h-36 object-cover">
+      <div class="text-amber-800 font-medium text-lg">Pinacolado</div>
+      <div class="text-sm mt-2">L: 500 Ksh | R: 450 Ksh</div>
+    </div>
+
+    <!-- Item 2: Mocktail -->
+    <div class="inline-block bg-amber-50 rounded-xl p-4 w-64 snap-center shrink-0">
+      <img src="https://img.freepik.com/free-photo/variety-smoothies-are-lined-up-bar-counter_188544-46286.jpg?uid=R198666552&ga=GA1.1.395247667.1747458314&semt=ais_hybrid&w=740" alt="Mocktail Boba" class="rounded-md mb-4 w-full h-36 object-cover">
+      <div class="text-amber-800 font-medium text-lg">Mocktail</div>
+      <div class="text-sm mt-2">L: 500 Ksh | R: 450 Ksh</div>
+    </div>
+
+    <!-- Item 3: Kiwi -->
+    <div class="inline-block bg-amber-50 rounded-xl p-4 w-64 snap-center shrink-0">
+      <img src="https://img.freepik.com/free-photo/front-view-jar-dessert-with-kiwi-candy_23-2148603287.jpg?uid=R198666552&ga=GA1.1.395247667.1747458314&semt=ais_hybrid&w=740" alt="Kiwi Boba" class="rounded-md mb-4 w-full h-36 object-cover">
+      <div class="text-amber-800 font-medium text-lg">Kiwi</div>
+      <div class="text-sm mt-2">L: 500 Ksh | R: 450 Ksh</div>
+    </div>
+
+    <!-- Item 4: Blue Lagoon -->
+    <div class="inline-block bg-amber-50 rounded-xl p-4 w-64 snap-center shrink-0">
+      <img src="https://img.freepik.com/free-photo/front-view-blue-cool-lemonade-with-ice-blue-background-fruit-cold-cocktail-drink-color-bar-juice_140725-156766.jpg?uid=R198666552&ga=GA1.1.395247667.1747458314&semt=ais_hybrid&w=740" alt="Blue Lagoon Boba" class="rounded-md mb-4 w-full h-36 object-cover">
+      <div class="text-amber-800 font-medium text-lg">Blue Lagoon</div>
+      <div class="text-sm mt-2">L: 500 Ksh | R: 450 Ksh</div>
+    </div>
+
+    <!-- Item 5: Passion -->
+    <div class="inline-block bg-amber-50 rounded-xl p-4 w-64 snap-center shrink-0">
+      <img src="https://img.freepik.com/free-photo/still-life-cup-brazilian-acai-dessert_23-2150168861.jpg?uid=R198666552&ga=GA1.1.395247667.1747458314&semt=ais_hybrid&w=740" alt="Passion Boba" class="rounded-md mb-4 w-full h-36 object-cover">
+      <div class="text-amber-800 font-medium text-lg">Passion</div>
+      <div class="text-sm mt-2">L: 500 Ksh | R: 450 Ksh</div>
+    </div>
+
+    <!-- Item 6: Strawberry -->
+    <div class="inline-block bg-amber-50 rounded-xl p-4 w-64 snap-center shrink-0">
+      <img src="https://img.freepik.com/premium-photo/strawberry-bubble-tea-glass_73588-9294.jpg?uid=R198666552&ga=GA1.1.395247667.1747458314&semt=ais_hybrid&w=740" alt="Strawberry Boba" class="rounded-md mb-4 w-full h-36 object-cover">
+      <div class="text-amber-800 font-medium text-lg">Strawberry</div>
+      <div class="text-sm mt-2">L: 500 Ksh | R: 450 Ksh</div>
+    </div>
+
+    <!-- Item 7: Virgin -->
+    <div class="inline-block bg-amber-50 rounded-xl p-4 w-64 snap-center shrink-0">
+      <img src="https://img.freepik.com/free-photo/composition-with-delicious-thai-tea_23-2148994320.jpg?uid=R198666552&ga=GA1.1.395247667.1747458314&semt=ais_hybrid&w=740" alt="Virgin Boba" class="rounded-md mb-4 w-full h-36 object-cover">
+      <div class="text-amber-800 font-medium text-lg">Virgin</div>
+      <div class="text-sm mt-2">L: 500 Ksh | R: 450 Ksh</div>
+    </div>
+
+  </div>
+</div>
+</h2>
+<!-- Lemonade Boba -->
+ <h2 id="latte">lemonade boba
+  <div class="mb-16 menu-category bg-white">
+  <!-- Top Image & Title -->
+  <div class="relative h-48 md:h-64 w-full rounded-t-xl overflow-hidden">
+    <img src="https://img.freepik.com/free-photo/iced-lemon-tea-glass-with-honey-lemon-wooden-wall_1150-26448.jpg?uid=R198666552&ga=GA1.1.395247667.1747458314&semt=ais_hybrid&w=740" alt="Lemonade Boba" class="w-full h-full object-cover">
+    <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-black/30 flex items-end justify-center pb-8">
+      <h3 class="text-3xl md:text-4xl font-bold text-amber-100">Lemonade Boba</h3>
+    </div>
+  </div>
+
+  <!-- Horizontal Scrollable Cards -->
+  <div class="overflow-x-auto whitespace-nowrap scroll-smooth p-6 space-x-6 flex snap-x snap-mandatory">
+
+    <!-- Item 1: Mango Lemonade -->
+    <div class="inline-block bg-amber-50 rounded-xl p-4 w-64 snap-center shrink-0">
+      <img src="https://img.freepik.com/premium-photo/mango-juice-dark-background-summer-drink-with-ice-slices-mango-lime_235573-1182.jpg?uid=R198666552&ga=GA1.1.395247667.1747458314&semt=ais_hybrid&w=740" alt="Mango Lemonade" class="rounded-md mb-4 w-full h-36 object-cover">
+      <div class="text-amber-800 font-medium text-lg">Mango Lemonade</div>
+      <div class="text-sm mt-2">L: 500 Ksh | R: 450 Ksh</div>
+    </div>
+
+    <!-- Item 2: Boba -->
+    <div class="inline-block bg-amber-50 rounded-xl p-4 w-64 snap-center shrink-0">
+      <img src="https://img.freepik.com/free-photo/minimalist-still-life-asian-tea_23-2149709057.jpg?uid=R198666552&ga=GA1.1.395247667.1747458314&semt=ais_hybrid&w=740" alt="Boba" class="rounded-md mb-4 w-full h-36 object-cover">
+      <div class="text-amber-800 font-medium text-lg">Boba</div>
+      <div class="text-sm mt-2">L: 500 Ksh | R: 450 Ksh</div>
+    </div>
+
+    <!-- Item 3: Clasic Strawberry -->
+    <div class="inline-block bg-amber-50 rounded-xl p-4 w-64 snap-center shrink-0">
+      <img src="https://img.freepik.com/free-photo/concept-delicious-strawberry-smoothie_23-2148171046.jpg?uid=R198666552&ga=GA1.1.395247667.1747458314&semt=ais_hybrid&w=740" alt="Clasic Strawberry" class="rounded-md mb-4 w-full h-36 object-cover">
+      <div class="text-amber-800 font-medium text-lg">Clasic Strawberry</div>
+      <div class="text-sm mt-2">L: 500 Ksh | R: 450 Ksh</div>
+    </div>
+
+    <!-- Item 4: Blueberry -->
+    <div class="inline-block bg-amber-50 rounded-xl p-4 w-64 snap-center shrink-0">
+      <img src="https://img.freepik.com/free-photo/front-view-composition-healthy-breakfast-meal-with-yogurt_23-2148894695.jpg?uid=R198666552&ga=GA1.1.395247667.1747458314&semt=ais_hybrid&w=740" alt="Blueberry" class="rounded-md mb-4 w-full h-36 object-cover">
+      <div class="text-amber-800 font-medium text-lg">Blueberry</div>
+      <div class="text-sm mt-2">L: 500 Ksh | R: 450 Ksh</div>
+    </div>
+
+    <!-- Item 5: Passion -->
+    <div class="inline-block bg-amber-50 rounded-xl p-4 w-64 snap-center shrink-0">
+      <img src="https://img.freepik.com/free-photo/passion-fruit-soda-mint_1339-6086.jpg?uid=R198666552&ga=GA1.1.395247667.1747458314&semt=ais_hybrid&w=740" alt="Passion" class="rounded-md mb-4 w-full h-36 object-cover">
+      <div class="text-amber-800 font-medium text-lg">Passion</div>
+      <div class="text-sm mt-2">L: 500 Ksh | R: 450 Ksh</div>
+    </div>
+
+  </div>
+</div>
+</h2>
+<!-- Snacks and Creeps -->
+ <h2 id="latte">snacks and creeps
+<div class="mb-16 menu-category bg-white animate-fade-in">
+  <!-- Top Image & Title -->
+  <div class="relative h-48 md:h-64 w-full rounded-t-xl overflow-hidden">
+    <img src="https://img.freepik.com/premium-photo/variation-different-unhealthy-snacks-crackers-sweet-salted-popcorn-tortillas-nuts-straws-bretsels_136595-3545.jpg?uid=R198666552&ga=GA1.1.395247667.1747458314&semt=ais_hybrid&w=740" alt="Snacks and Creeps" class="w-full h-full object-cover">
+    <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-black/30 flex items-end justify-center pb-8">
+      <h3 class="text-3xl md:text-4xl font-bold text-amber-100 animate-bounce">Snacks and Creeps</h3>
+    </div>
+  </div>
+
+  <!-- Horizontal Scrollable Cards -->
+  <div class="overflow-x-auto whitespace-nowrap scroll-smooth p-6 space-x-6 flex snap-x snap-mandatory">
+    
+    <!-- Template for items -->
+    <div class="inline-block bg-amber-50 rounded-xl p-4 w-64 snap-center shrink-0 transform transition-transform duration-300 hover:scale-105 hover:shadow-lg">
+      <img src="https://img.freepik.com/free-photo/almond-banana-pancake_1339-5292.jpg?uid=R198666552&ga=GA1.1.395247667.1747458314&semt=ais_hybrid&w=740" alt="Banana" class="rounded-md mb-4 w-full h-36 object-cover">
+      <div class="text-amber-800 font-medium text-lg">Banana</div>
+      <div class="text-sm mt-2">350 Ksh</div>
+    </div>
+
+    <div class="inline-block bg-amber-50 rounded-xl p-4 w-64 snap-center shrink-0 transform transition-transform duration-300 hover:scale-105 hover:shadow-lg">
+      <img src="https://img.freepik.com/free-photo/delicious-picnic-still-life_23-2149419693.jpg?uid=R198666552&ga=GA1.1.395247667.1747458314&semt=ais_hybrid&w=740" alt="Nutella" class="rounded-md mb-4 w-full h-36 object-cover">
+      <div class="text-amber-800 font-medium text-lg">Nutella</div>
+      <div class="text-sm mt-2">400 Ksh</div>
+    </div>
+
+    <div class="inline-block bg-amber-50 rounded-xl p-4 w-64 snap-center shrink-0 transform transition-transform duration-300 hover:scale-105 hover:shadow-lg">
+      <img src="https://img.freepik.com/free-photo/top-view-fruity-salad-with-fresh-sliced-fruits_140725-84788.jpg?uid=R198666552&ga=GA1.1.395247667.1747458314&semt=ais_hybrid&w=740" alt="Fruit" class="rounded-md mb-4 w-full h-36 object-cover">
+      <div class="text-amber-800 font-medium text-lg">Fruit</div>
+      <div class="text-sm mt-2">400 Ksh</div>
+    </div>
+
+    <div class="inline-block bg-amber-50 rounded-xl p-4 w-64 snap-center shrink-0 transform transition-transform duration-300 hover:scale-105 hover:shadow-lg">
+      <img src="https://img.freepik.com/free-photo/front-view-sugar-cookies-with-nuts-jam-light-surface_140725-75005.jpg?uid=R198666552&ga=GA1.1.395247667.1747458314&semt=ais_hybrid&w=740
+      " alt="Lotus" class="rounded-md mb-4 w-full h-36 object-cover">
+      <div class="text-amber-800 font-medium text-lg">Lotus</div>
+      <div class="text-sm mt-2">400 Ksh</div>
+    </div>
+
+    <div class="inline-block bg-amber-50 rounded-xl p-4 w-64 snap-center shrink-0 transform transition-transform duration-300 hover:scale-105 hover:shadow-lg">
+      <img src="https://img.freepik.com/premium-photo/variation-different-unhealthy-snacks-crackers-sweet-salted-popcorn-tortillas-nuts-straws-bretsels_136595-3545.jpg?uid=R198666552&ga=GA1.1.395247667.1747458314&semt=ais_hybrid&w=740" alt="Plain" class="rounded-md mb-4 w-full h-36 object-cover">
+      <div class="text-amber-800 font-medium text-lg">Plain</div>
+      <div class="text-sm mt-2">200 Ksh</div>
+    </div>
+
+    <div class="inline-block bg-amber-50 rounded-xl p-4 w-64 snap-center shrink-0 transform transition-transform duration-300 hover:scale-105 hover:shadow-lg">
+      <img src="https://img.freepik.com/free-photo/high-angle-jar-dessert-with-biscuits-donut_23-2148603282.jpg?uid=R198666552&ga=GA1.1.395247667.1747458314&semt=ais_hybrid&w=740" alt="Oreo" class="rounded-md mb-4 w-full h-36 object-cover">
+      <div class="text-amber-800 font-medium text-lg">Oreo</div>
+      <div class="text-sm mt-2">400 Ksh</div>
+    </div>
+
+    <div class="inline-block bg-amber-50 rounded-xl p-4 w-64 snap-center shrink-0 transform transition-transform duration-300 hover:scale-105 hover:shadow-lg">
+      <img src="https://img.freepik.com/free-photo/front-view-fresh-red-strawberries-with-candies-white-surface-fruit-sweet-candy-color_140725-81931.jpg?uid=R198666552&ga=GA1.1.395247667.1747458314&semt=ais_hybrid&w=740" alt="Strawberry" class="rounded-md mb-4 w-full h-36 object-cover">
+      <div class="text-amber-800 font-medium text-lg">Strawberry</div>
+      <div class="text-sm mt-2">400 Ksh</div>
+    </div>
+
+    <div class="inline-block bg-amber-50 rounded-xl p-4 w-64 snap-center shrink-0 transform transition-transform duration-300 hover:scale-105 hover:shadow-lg">
+      <img src="https://img.freepik.com/premium-photo/variation-different-unhealthy-snacks-crackers-sweet-salted-popcorn-tortillas-nuts-straws-bretsels_136595-3546.jpg?uid=R198666552&ga=GA1.1.395247667.1747458314&semt=ais_hybrid&w=740" alt="Signature" class="rounded-md mb-4 w-full h-36 object-cover">
+      <div class="text-amber-800 font-medium text-lg">Signature</div>
+      <div class="text-sm mt-2">550 Ksh</div>
+    </div>
+
+  </div>
+</div>
+</h2>
+
+<!-- Tailwind Custom Animation Class -->
+<style>
+  @keyframes fade-in {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .animate-fade-in {
+    animation: fade-in 0.8s ease-out;
+  }
+</style>
+<!-- Snacks and Waffles -->
+ <h2 id="latte">snacks and waffles
+<div class="mb-16 menu-category bg-white animate-fade-in">
+  <!-- Top Image & Title -->
+  <div class="relative h-48 md:h-64 w-full rounded-t-xl overflow-hidden">
+    <img src="https://img.freepik.com/premium-photo/close-up-meal-served-plate-table_1048944-5894533.jpg?uid=R198666552&ga=GA1.1.395247667.1747458314&semt=ais_hybrid&w=740" alt="Snacks and Waffles" class="w-full h-full object-cover">
+    <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-black/30 flex items-end justify-center pb-8">
+      <h3 class="text-3xl md:text-4xl font-bold text-amber-100 animate-bounce">Snacks and Waffles</h3>
+    </div>
+  </div>
+
+  <!-- Horizontal Scrollable Cards -->
+  <div class="overflow-x-auto whitespace-nowrap scroll-smooth p-6 space-x-6 flex snap-x snap-mandatory">
+
+    <!-- Items -->
+    <div class="inline-block bg-amber-50 rounded-xl p-4 w-64 snap-center shrink-0 transition-transform transform hover:scale-105 hover:shadow-lg">
+      <img src="https://img.freepik.com/free-photo/vertical-shot-delicious-chocolate-waffles-net-table-near-ingredients_181624-29842.jpg?uid=R198666552&ga=GA1.1.395247667.1747458314&semt=ais_hybrid&w=740" alt="Nutella" class="rounded-md mb-4 w-full h-36 object-cover">
+      <div class="text-amber-800 font-medium text-lg">Nutella</div>
+      <div class="text-sm mt-2">500 Ksh</div>
+    </div>
+
+    <div class="inline-block bg-amber-50 rounded-xl p-4 w-64 snap-center shrink-0 transition-transform transform hover:scale-105 hover:shadow-lg">
+      <img src="https://img.freepik.com/free-photo/front-view-dessert-glass-with-pretzels-cloth_23-2148603316.jpg?uid=R198666552&ga=GA1.1.395247667.1747458314&semt=ais_hybrid&w=740" alt="Peanut Butter" class="rounded-md mb-4 w-full h-36 object-cover">
+      <div class="text-amber-800 font-medium text-lg">Peanut Butter</div>
+      <div class="text-sm mt-2">450 Ksh</div>
+    </div>
+
+    <div class="inline-block bg-amber-50 rounded-xl p-4 w-64 snap-center shrink-0 transition-transform transform hover:scale-105 hover:shadow-lg">
+      <img src="https://img.freepik.com/free-photo/ice-cream-sundae-edible-waffle-bowl_1339-2875.jpg?uid=R198666552&ga=GA1.1.395247667.1747458314&semt=ais_hybrid&w=740" alt="Ice Cream" class="rounded-md mb-4 w-full h-36 object-cover">
+      <div class="text-amber-800 font-medium text-lg">Ice Cream</div>
+      <div class="text-sm mt-2">450 Ksh</div>
+    </div>
+
+    <div class="inline-block bg-amber-50 rounded-xl p-4 w-64 snap-center shrink-0 transition-transform transform hover:scale-105 hover:shadow-lg">
+      <img src="https://img.freepik.com/free-photo/top-view-sweet-pancakes-with-fruits-chocolate-grey-floor_140725-13756.jpg?uid=R198666552&ga=GA1.1.395247667.1747458314&semt=ais_hybrid&w=740" alt="Honey Strawberry" class="rounded-md mb-4 w-full h-36 object-cover">
+      <div class="text-amber-800 font-medium text-lg">Honey Strawberry</div>
+      <div class="text-sm mt-2">450 Ksh</div>
+    </div>
+
+    <div class="inline-block bg-amber-50 rounded-xl p-4 w-64 snap-center shrink-0 transition-transform transform hover:scale-105 hover:shadow-lg">
+      <img src="https://img.freepik.com/premium-photo/stack-cookies-against-white-background_1048944-21051886.jpg?uid=R198666552&ga=GA1.1.395247667.1747458314&semt=ais_hybrid&w=740" alt="Mr Oreo" class="rounded-md mb-4 w-full h-36 object-cover">
+      <div class="text-amber-800 font-medium text-lg">Mr Oreo</div>
+      <div class="text-sm mt-2">450 Ksh</div>
+    </div>
+
+    <div class="inline-block bg-amber-50 rounded-xl p-4 w-64 snap-center shrink-0 transition-transform transform hover:scale-105 hover:shadow-lg">
+      <img src="https://img.freepik.com/premium-photo/high-angle-view-food-plate_1048944-4739733.jpg?uid=R198666552&ga=GA1.1.395247667.1747458314&semt=ais_hybrid&w=740" alt="Classic" class="rounded-md mb-4 w-full h-36 object-cover">
+      <div class="text-amber-800 font-medium text-lg">Classic</div>
+      <div class="text-sm mt-2">450 Ksh</div>
+    </div>
+
+    <div class="inline-block bg-amber-50 rounded-xl p-4 w-64 snap-center shrink-0 transition-transform transform hover:scale-105 hover:shadow-lg">
+      <img src="https://img.freepik.com/premium-photo/delicious-sweet-bubble-waffle-wooden-board_392895-10886.jpg?uid=R198666552&ga=GA1.1.395247667.1747458314&semt=ais_hybrid&w=740" alt="Biscoff Grumble" class="rounded-md mb-4 w-full h-36 object-cover">
+      <div class="text-amber-800 font-medium text-lg">Biscoff Grumble</div>
+      <div class="text-sm mt-2">550 Ksh</div>
+    </div>
+
+    <div class="inline-block bg-amber-50 rounded-xl p-4 w-64 snap-center shrink-0 transition-transform transform hover:scale-105 hover:shadow-lg">
+      <img src="https://img.freepik.com/free-photo/sweet-breakfast-wooden-desk_329181-1014.jpg?uid=R198666552&ga=GA1.1.395247667.1747458314&semt=ais_hybrid&w=740" alt="Strawberry Dream" class="rounded-md mb-4 w-full h-36 object-cover">
+      <div class="text-amber-800 font-medium text-lg">Strawberry Dream</div>
+      <div class="text-sm mt-2">450 Ksh</div>
+    </div>
+
+    <div class="inline-block bg-amber-50 rounded-xl p-4 w-64 snap-center shrink-0 transition-transform transform hover:scale-105 hover:shadow-lg">
+      <img src="https://img.freepik.com/free-photo/crepe-with-chocolate-sauce-sliced-strawberries-kiwi-bananas_140725-7819.jpg?uid=R198666552&ga=GA1.1.395247667.1747458314&semt=ais_hybrid&w=740" alt="Mixfruit Waffle" class="rounded-md mb-4 w-full h-36 object-cover">
+      <div class="text-amber-800 font-medium text-lg">Mixfruit Waffle</div>
+      <div class="text-sm mt-2">500 Ksh</div>
+    </div>
+
+    <div class="inline-block bg-amber-50 rounded-xl p-4 w-64 snap-center shrink-0 transition-transform transform hover:scale-105 hover:shadow-lg">
+      <img src="https://img.freepik.com/free-photo/flat-lay-plates-with-waffles-chocolate_23-2148526405.jpg?uid=R198666552&ga=GA1.1.395247667.1747458314&semt=ais_hybrid&w=740" alt="Chocolate Waffle" class="rounded-md mb-4 w-full h-36 object-cover">
+      <div class="text-amber-800 font-medium text-lg">Chocolate Waffle</div>
+      <div class="text-sm mt-2">500 Ksh</div>
+    </div>
+
+  </div>
+</div>
+</h2>
+
+<!-- Tailwind Custom Animation -->
+<style>
+  @keyframes fade-in {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .animate-fade-in {
+    animation: fade-in 0.8s ease-out;
+  }
+</style>
+
+        <!-- Location Section -->
+        <section id="location" class="mb-20 bg-white rounded-xl shadow-lg overflow-hidden">
+            <div class="grid grid-cols-1 md:grid-cols-2">
+                <div class="p-8 md:p-12">
+                    <h3 class="heading-font text-3xl text-amber-800 mb-6">Visit Us</h3>
+                    <div class="space-y-6">
+                        <div class="flex items-start">
+                            <i class="fas fa-map-marker-alt text-amber-600 text-xl mt-1 mr-4"></i>
+                            <div>
+                                <h4 class="font-bold text-amber-900">Address</h4>
+                                <p class="text-amber-700">Jawi Coffee Shop, Nairobi, Kenya</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <i class="fas fa-clock text-amber-600 text-xl mt-1 mr-4"></i>
+                            <div>
+                                <h4 class="font-bold text-amber-900">Opening Hours</h4>
+                                <p class="text-amber-700">Monday - Friday: 7:00 AM - 9:00 PM</p>
+                                <p class="text-amber-700">Saturday - Sunday: 8:00 AM - 10:00 PM</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <i class="fas fa-phone-alt text-amber-600 text-xl mt-1 mr-4"></i>
+                            <div>
+                                <h4 class="font-bold text-amber-900">Contact</h4>
+                                <p class="text-amber-700">Phone: +254 712 345 678</p>
+                                <p class="text-amber-700">Email: hello@bubblebliss.com</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mt-8 flex space-x-4">
+                        <a href="#" class="bg-blue-600 text-white p-3 rounded-full w-10 h-10 flex items-center justify-center">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="bg-pink-600 text-white p-3 rounded-full w-10 h-10 flex items-center justify-center">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="bg-blue-400 text-white p-3 rounded-full w-10 h-10 flex items-center justify-center">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="h-64 md:h-auto">
+                    <iframe 
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3988.808559559963!2d36.82154831475399!3d-1.2925038359787672!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x182f10d4b9b5d9a5%3A0x5f0f1c5f5a5f5a5f!2sNairobi%2C%20Kenya!5e0!3m2!1sen!2ske!4v1629455737001!5m2!1sen!2ske" 
+                        width="100%" 
+                        height="100%" 
+                        style="border:0;" 
+                        allowfullscreen="" 
+                        loading="lazy">
+                    </iframe>
+                </div>
+            </div>
+        </section>
+
+    </section>
+
+    <script>
+        // Simple animation for menu items
+        document.querySelectorAll('.menu-item').forEach(item => {
+            item.addEventListener('mouseenter', () => {
+                item.style.transform = 'translateX(5px)';
+            });
+            item.addEventListener('mouseleave', () => {
+                item.style.transform = 'translateX(0)';
+            });
+        });
+
+        // Mobile menu toggle (would need more implementation)
+        document.querySelector('button').addEventListener('click', () => {
+            alert('Mobile menu would open here!');
+        });
+    </script>
+</body>
+</html>

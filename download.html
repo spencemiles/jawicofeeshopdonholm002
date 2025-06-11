@@ -1,0 +1,705 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Brewed Bliss Coffee - App Coming Soon</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #3e2723 0%, #5d4037 100%);
+            color: #fff;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        .coffee-bean {
+            position: absolute;
+            width: 30px;
+            height: 20px;
+            background: #4e342e;
+            border-radius: 50%;
+            opacity: 0.3;
+            animation: float 15s linear infinite;
+            z-index: -1;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+            }
+            100% {
+                transform: translateY(-100px) rotate(360deg);
+            }
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 5%;
+            background: rgba(38, 28, 22, 0.9);
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #ffcc80;
+        }
+
+        .logo i {
+            color: #e65100;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: #d7ccc8;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #ff9800;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            width: 90%;
+            text-align: center;
+            padding: 4rem 2rem;
+            background: rgba(38, 28, 22, 0.8);
+            border-radius: 20px;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(10px);
+            z-index: 10;
+            position: relative;
+        }
+
+        .container::before {
+            content: "";
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+            z-index: -1;
+            animation: rotate 20s linear infinite;
+        }
+
+        @keyframes rotate {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        .hero-icon {
+            font-size: 5rem;
+            margin-bottom: 1.5rem;
+            color: #d7ccc8;
+            text-shadow: 0 0 15px rgba(255, 152, 0, 0.7);
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            color: #ffcc80;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+            letter-spacing: 1px;
+        }
+
+        .tagline {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            color: #d7ccc8;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.6;
+        }
+
+        .app-button {
+            position: relative;
+            display: inline-block;
+            padding: 20px 50px;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #fff;
+            background: linear-gradient(45deg, #e65100, #ff9800);
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            overflow: hidden;
+            box-shadow: 0 10px 25px rgba(230, 81, 0, 0.4);
+            transition: all 0.3s ease;
+            margin: 2rem 0;
+            z-index: 1;
+            animation: pulse 2s infinite;
+        }
+
+        .app-button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(230, 81, 0, 0.6);
+            animation: none;
+        }
+
+        .app-button:active {
+            transform: translateY(0);
+        }
+
+        .app-button::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+            transition: 0.5s;
+        }
+
+        .app-button:hover::before {
+            left: 100%;
+        }
+
+        .app-button i {
+            margin-right: 15px;
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+                box-shadow: 0 10px 25px rgba(230, 81, 0, 0.4);
+            }
+            50% {
+                transform: scale(1.05);
+                box-shadow: 0 15px 35px rgba(230, 81, 0, 0.6);
+            }
+            100% {
+                transform: scale(1);
+                box-shadow: 0 10px 25px rgba(230, 81, 0, 0.4);
+            }
+        }
+
+        /* Features Section */
+        .features {
+            padding: 6rem 5%;
+            background: rgba(33, 23, 18, 0.9);
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: #ffcc80;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: "";
+            display: block;
+            width: 100px;
+            height: 4px;
+            background: #ff9800;
+            margin: 10px auto;
+            border-radius: 2px;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2.5rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .feature {
+            background: rgba(97, 66, 52, 0.6);
+            padding: 2.5rem 2rem;
+            border-radius: 15px;
+            transition: all 0.3s ease;
+            text-align: center;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .feature:hover {
+            transform: translateY(-10px);
+            background: rgba(121, 85, 72, 0.8);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .feature i {
+            font-size: 3.5rem;
+            color: #ffcc80;
+            margin-bottom: 1.5rem;
+        }
+
+        .feature h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            color: #ffcc80;
+        }
+
+        .feature p {
+            font-size: 1.1rem;
+            color: #d7ccc8;
+            line-height: 1.6;
+        }
+
+        /* Menu Preview */
+        .menu {
+            padding: 6rem 5%;
+            background: rgba(38, 28, 22, 0.9);
+        }
+
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2.5rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .menu-item {
+            background: rgba(121, 85, 72, 0.7);
+            border-radius: 15px;
+            overflow: hidden;
+            transition: transform 0.3s ease;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .menu-item:hover {
+            transform: translateY(-10px);
+        }
+
+        .menu-img {
+            height: 200px;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .menu-content {
+            padding: 1.5rem;
+        }
+
+        .menu-content h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            color: #ffcc80;
+        }
+
+        .menu-content p {
+            color: #d7ccc8;
+            margin-bottom: 1rem;
+        }
+
+        .price {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #ff9800;
+        }
+
+        /* Footer */
+        footer {
+            background: rgba(28, 20, 15, 0.95);
+            padding: 3rem 5%;
+            text-align: center;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .social {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .social a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 60px;
+            height: 60px;
+            background: rgba(121, 85, 72, 0.8);
+            border-radius: 50%;
+            color: #ffcc80;
+            font-size: 1.8rem;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        .social a:hover {
+            transform: translateY(-5px) scale(1.1);
+            background: #ff9800;
+            color: #3e2723;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+            margin-bottom: 2rem;
+        }
+
+        .footer-links a {
+            color: #d7ccc8;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: #ff9800;
+        }
+
+        .copyright {
+            color: #bcaaa4;
+            font-size: 1rem;
+            margin-top: 2rem;
+        }
+
+        /* Responsive design */
+        @media (max-width: 768px) {
+            nav {
+                flex-direction: column;
+                padding: 1rem;
+            }
+            
+            .nav-links {
+                margin-top: 1rem;
+                gap: 1.5rem;
+            }
+            
+            h1 {
+                font-size: 2.5rem;
+            }
+            
+            .tagline {
+                font-size: 1.2rem;
+            }
+            
+            .app-button {
+                font-size: 1.5rem;
+                padding: 15px 40px;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .feature i {
+                font-size: 3rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .nav-links {
+                gap: 1rem;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .app-button {
+                font-size: 1.2rem;
+                padding: 12px 30px;
+            }
+            
+            .feature {
+                padding: 1.5rem 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Floating coffee beans -->
+    <div class="coffee-bean" style="top: 10%; left: 5%; animation-delay: 0s;"></div>
+    <div class="coffee-bean" style="top: 20%; left: 90%; animation-delay: -2s;"></div>
+    <div class="coffee-bean" style="top: 40%; left: 15%; animation-delay: -4s;"></div>
+    <div class="coffee-bean" style="top: 65%; left: 80%; animation-delay: -6s;"></div>
+    <div class="coffee-bean" style="top: 80%; left: 25%; animation-delay: -8s;"></div>
+    <div class="coffee-bean" style="top: 30%; left: 70%; animation-delay: -10s;"></div>
+    <div class="coffee-bean" style="top: 55%; left: 40%; animation-delay: -12s;"></div>
+    <div class="coffee-bean" style="top: 75%; left: 85%; animation-delay: -14s;"></div>
+    
+    <!-- Navigation -->
+       <nav class="navbar">
+        <a href="#" class="logo">Jawi Coffee Shop</a>
+        
+        <!-- Mobile menu toggle button -->
+        <div class="menu-toggle" id="mobile-menu">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </div>
+
+        <ul class="nav-links" id="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="About.html">About</a></li>
+            <li><a href="menu.html">menu</a></li>
+            <li><a href="shop.html">Shop</a></li>
+            <li><a href="gallery.html">Gallery</a></li>
+            <li><a href="blog1.html">Blog</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+    </nav>
+    
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-icon">
+                <i class="fas fa-mug-hot"></i>
+            </div>
+            <h1>Jawi coffee shop app</h1>
+            <p class="tagline">Experience the perfect cup of coffee with our upcoming mobile app - bringing the aroma and taste of our premium blends right to your fingertips. Order ahead, earn rewards, and discover new favorites.</p>
+            
+            <button class="app-button" id="downloadBtn">
+                <i class="fas fa-mobile-alt"></i>App Coming Soon
+            </button>
+            
+            <div class="countdown">
+                <p>Launching in</p>
+                <div>
+                    <span id="days">30</span>
+                    <span id="hours">12</span>
+                    <span id="minutes">45</span>
+                    <span id="seconds">30</span>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Features Section -->
+    <section class="features" id="features">
+        <h2 class="section-title">App Features</h2>
+        <div class="features-grid">
+            <div class="feature">
+                <i class="fas fa-coffee"></i>
+                <h3>Order Ahead</h3>
+                <p>Skip the line and have your coffee ready when you arrive. Customize your order exactly how you like it.</p>
+            </div>
+            <div class="feature">
+                <i class="fas fa-percent"></i>
+                <h3>Rewards Program</h3>
+                <p>Earn points with every purchase and get free drinks, exclusive offers, and special birthday treats.</p>
+            </div>
+            <div class="feature">
+                <i class="fas fa-map-marker-alt"></i>
+                <h3>Store Locator</h3>
+                <p>Find our nearest coffee shops with real-time directions and estimated travel time.</p>
+            </div>
+            <div class="feature">
+                <i class="fas fa-gift"></i>
+                <h3>Exclusive Deals</h3>
+                <p>Get access to app-only promotions, seasonal specials, and limited-time offers.</p>
+            </div>
+            <div class="feature">
+                <i class="fas fa-clock"></i>
+                <h3>Quick Pickup</h3>
+                <p>Receive notifications when your order is ready. No waiting, just grab and go!</p>
+            </div>
+            <div class="feature">
+                <i class="fas fa-user-friends"></i>
+                <h3>Gift Sharing</h3>
+                <p>Send coffee gifts to friends and family with personalized messages and scheduling.</p>
+            </div>
+        </div>
+    </section>
+    
+    
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="social">
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-tiktok"></i></a>
+            </div>
+            
+            <div class="footer-links">
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Service</a>
+                <a href="#">Careers</a>
+                <a href="#">Franchising</a>
+                <a href="#">Feedback</a>
+            </div>
+            
+            <p class="copyright">&copy; 2023 Brewed Bliss Coffee Co. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Button interaction
+        document.getElementById('downloadBtn').addEventListener('click', function() {
+            this.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Launching Soon';
+            this.style.background = 'linear-gradient(45deg, #ff9800, #ffcc80)';
+            
+            setTimeout(() => {
+                this.innerHTML = '<i class="fas fa-mobile-alt"></i> App Coming Soon';
+                this.style.background = 'linear-gradient(45deg, #e65100, #ff9800)';
+                
+                // Create a coffee cup effect
+                const cup = document.createElement('div');
+                cup.style.position = 'fixed';
+                cup.style.width = '50px';
+                cup.style.height = '60px';
+                cup.style.background = 'linear-gradient(to bottom, #795548, #5D4037)';
+                cup.style.borderRadius = '0 0 20px 20px';
+                cup.style.left = '50%';
+                cup.style.top = '50%';
+                cup.style.transform = 'translate(-50%, -50%)';
+                cup.style.zIndex = '100';
+                cup.style.boxShadow = '0 0 20px rgba(255, 204, 128, 0.8)';
+                
+                // Coffee inside the cup
+                const coffee = document.createElement('div');
+                coffee.style.position = 'absolute';
+                coffee.style.width = '40px';
+                coffee.style.height = '40px';
+                coffee.style.background = 'linear-gradient(to bottom, #4E342E, #3E2723)';
+                coffee.style.borderRadius = '0 0 15px 15px';
+                coffee.style.left = '5px';
+                coffee.style.bottom = '0';
+                cup.appendChild(coffee);
+                
+                // Handle
+                const handle = document.createElement('div');
+                handle.style.position = 'absolute';
+                handle.style.width = '15px';
+                handle.style.height = '20px';
+                handle.style.border = '5px solid #5D4037';
+                handle.style.borderLeft = 'none';
+                handle.style.borderBottom = 'none';
+                handle.style.borderRadius = '0 20px 0 0';
+                handle.style.right = '-15px';
+                handle.style.top = '15px';
+                cup.appendChild(handle);
+                
+                // Steam
+                const steam = document.createElement('div');
+                steam.style.position = 'absolute';
+                steam.style.width = '10px';
+                steam.style.height = '30px';
+                steam.style.background = 'rgba(255, 255, 255, 0.8)';
+                steam.style.borderRadius = '50%';
+                steam.style.left = '20px';
+                steam.style.top = '-40px';
+                steam.style.filter = 'blur(4px)';
+                steam.style.animation = 'steam 3s infinite';
+                cup.appendChild(steam);
+                
+                document.body.appendChild(cup);
+                
+                // Add steam animation
+                const style = document.createElement('style');
+                style.innerHTML = `
+                    @keyframes steam {
+                        0% { transform: translateY(0) scale(1); opacity: 0.8; }
+                        50% { transform: translateY(-20px) scale(1.1); opacity: 0.5; }
+                        100% { transform: translateY(-40px) scale(1.2); opacity: 0; }
+                    }
+                `;
+                document.head.appendChild(style);
+                
+                // Remove the cup after animation
+                setTimeout(() => {
+                    cup.remove();
+                    style.remove();
+                }, 3000);
+            }, 1500);
+        });
+        
+        // Countdown timer
+        function updateCountdown() {
+            const launchDate = new Date();
+            launchDate.setDate(launchDate.getDate() + 30);
+            
+            const now = new Date();
+            const diff = launchDate - now;
+            
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+            
+            document.getElementById('days').textContent = days.toString().padStart(2, '0');
+            document.getElementById('hours').textContent = Math.floor(hours).toString().padStart(2, '0');
+            document.getElementById('minutes').textContent = minutes.toString().padStart(2, '0');
+            document.getElementById('seconds').textContent = seconds.toString().padStart(2, '0');
+        }
+        
+        updateCountdown();
+        setInterval(updateCountdown, 1000);
+        
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>

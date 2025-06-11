@@ -1,0 +1,1158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jawi Coffee Shop</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&family=Merriweather:ital,wght@0,300;0,400;0,700;1,300;1,400&display=swap" rel="stylesheet">
+    <style>
+        /* Global Styles */
+        :root {
+            --primary-dark: #463015;
+            --primary-medium: #6b4f29;
+            --primary-light: #c7a17a;
+            --accent-color: #d7b49e;
+            --text-dark: #30271c;
+            --text-light: #f8f5f0;
+            --background-light: #f8f5f0;
+            --background-dark: #1a1a1a;
+            --transition: all 0.3s ease;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Merriweather', serif;
+            color: var(--text-dark);
+            background-color: var(--background-light);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        h1, h2, h3, h4, h5 {
+            font-family: 'Oswald', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: var(--transition);
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        
+        .section-title .subtitle {
+            font-size: 18px;
+            color: var(--primary-light);
+            margin-bottom: 10px;
+            display: block;
+        }
+        
+        .section-title h2 {
+            font-size: 32px;
+            color: var(--text-dark);
+            position: relative;
+            display: inline-block;
+            padding-bottom: 15px;
+        }
+        
+        .section-title h2:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 2px;
+            background: var(--primary-light);
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            border: 2px solid var(--text-light);
+            color: var(--text-light);
+            text-transform: uppercase;
+            font-family: 'Oswald', sans-serif;
+            font-weight: 500;
+            letter-spacing: 1px;
+            transition: var(--transition);
+            text-align: center;
+        }
+        
+        .btn:hover {
+            background: var(--text-light);
+            color: var(--primary-dark);
+        }
+        
+        .offer-btn {
+            background: linear-gradient(45deg, var(--primary-light), var(--primary-medium));
+            color: var(--text-light);
+            border: none;
+            padding: 14px 32px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            border-radius: 30px;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(195, 142, 77, 0.6);
+            transition: var(--transition);
+            letter-spacing: 1px;
+            display: inline-block;
+            text-transform: uppercase;
+            font-family: 'Oswald', sans-serif;
+        }
+        
+        .offer-btn:hover {
+            background: linear-gradient(45deg, var(--primary-medium), var(--primary-light));
+            transform: scale(1.05);
+        }
+        
+        /* Navigation */
+        #navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: var(--primary-dark);
+            color: var(--text-light);
+            z-index: 9999;
+            transition: top 0.3s ease-in-out;
+            padding: 15px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: bold;
+            font-size: 1.5rem;
+            letter-spacing: 1px;
+        }
+        
+        .logo img {
+            height: 40px;
+            width: auto;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+        
+        .nav-links a {
+            position: relative;
+            padding: 5px 0;
+        }
+        
+        .nav-links a:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary-light);
+            transition: var(--transition);
+        }
+        
+        .nav-links a:hover:after {
+            width: 100%;
+        }
+        
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+        }
+        
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background: var(--text-light);
+            border-radius: 2px;
+            transition: var(--transition);
+        }
+        
+        .mobile-nav {
+            display: none;
+            flex-direction: column;
+            background-color: var(--primary-dark);
+            padding: 1rem 2rem;
+        }
+        
+        .mobile-nav a {
+            padding: 0.6rem 0;
+            border-bottom: 1px solid #5c4020;
+        }
+        
+        /* Coffee Slider */
+        #coffee-slider {
+            position: relative;
+            overflow: hidden;
+            height: 100vh;
+            width: 100%;
+            background: #050404;
+            color: var(--text-light);
+            margin-top: 70px;
+        }
+        
+        #coffee-slider * {
+            color: var(--text-light) !important;
+        }
+        
+        .slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 2rem;
+        }
+        
+        .slide.active {
+            opacity: 1;
+            z-index: 2;
+        }
+        
+        .slide h1 {
+            font-size: 3rem;
+            letter-spacing: 2px;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 5px rgba(0,0,0,0.7);
+        }
+        
+        .slide p {
+            font-style: italic;
+            max-width: 600px;
+            margin-bottom: 2rem;
+            font-size: 1.2rem;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.7);
+        }
+        
+        .slide-content {
+            max-width: 800px;
+            padding: 20px;
+            background: rgba(70, 48, 21, 0.7);
+            border-radius: 10px;
+        }
+        
+        .nav-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0,0,0,0.5);
+            color: var(--text-light);
+            border: none;
+            font-size: 2rem;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            cursor: pointer;
+            z-index: 3;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+        }
+        
+        .nav-btn:hover {
+            background: var(--primary-light);
+        }
+        
+        .nav-btn.left { left: 10px; }
+        .nav-btn.right { right: 10px; }
+        
+        /* Features Section */
+        .features {
+            padding: 100px 0;
+            background: var(--background-light);
+        }
+        
+        .features-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .feature-card {
+            text-align: center;
+            padding: 30px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: var(--transition);
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+        }
+        
+        .feature-img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+        
+        .feature-title {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+        }
+        
+        .feature-number {
+            color: var(--primary-light);
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+        
+        /* Menu Snack Section */
+        .menu-snack {
+            padding: 100px 0;
+            background: linear-gradient(to right, #2f2f2f, #1a1a1a);
+            color: var(--text-light);
+        }
+        
+        .snack-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 40px;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .snack-image img {
+            width: 100%;
+            max-width: 400px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+        
+        .snack-content {
+            max-width: 600px;
+        }
+        
+        .snack-content .subtitle {
+            font-size: 18px;
+            color: var(--primary-light);
+            margin-bottom: 10px;
+        }
+        
+        .snack-content h2 {
+            font-size: 32px;
+            margin: 10px 0;
+        }
+        
+        .snack-content hr {
+            width: 60px;
+            border: 2px solid var(--text-light);
+            margin: 20px 0;
+        }
+        
+        .snack-content p {
+            font-size: 16px;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+        
+        /* Coffee City Section */
+        .coffee-city {
+            display: flex;
+            width: 100%;
+            min-height: 600px;
+        }
+        
+        .city-text {
+            flex: 1;
+            background: var(--primary-dark);
+            color: var(--text-light);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 60px;
+        }
+        
+        .city-text h2 {
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+        
+        .city-text p {
+            font-size: 18px;
+            line-height: 1.6;
+            margin-bottom: 30px;
+        }
+        
+        .slider {
+            flex: 1;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .slider img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+        }
+        
+        .slider img.active {
+            opacity: 1;
+        }
+        
+        /* Menu Categories */
+        .menu-categories {
+            padding: 100px 0;
+            background: linear-gradient(135deg, var(--primary-dark), var(--primary-medium));
+        }
+        
+        .menu-categories h1 {
+            text-align: center;
+            font-size: 3rem;
+            font-weight: bold;
+            margin: 2rem 0;
+            color: var(--text-light);
+            text-shadow: 2px 2px 5px rgba(0,0,0,0.7);
+        }
+        
+        .menu-sections {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+            gap: 20px;
+            padding: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .section {
+            height: 180px;
+            border-radius: 15px;
+            overflow: hidden;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            display: flex;
+            align-items: flex-end;
+            transition: transform 0.3s ease;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+        }
+        
+        .section:hover {
+            transform: scale(1.03);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.7);
+        }
+        
+        .section a {
+            background: rgba(255, 255, 255, 0.25);
+            backdrop-filter: blur(8px);
+            width: 100%;
+            padding: 1rem;
+            text-align: center;
+            font-weight: bold;
+            font-size: 1.1rem;
+            color: var(--text-light);
+            text-shadow: 1px 1px 4px rgba(0,0,0,0.7);
+            text-decoration: none;
+            border-top: 1px solid rgba(255,255,255,0.3);
+        }
+        
+        /* Gallery */
+        .gallery {
+            padding: 100px 0;
+            background: var(--background-light);
+        }
+        
+        .gallery-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+        }
+        
+        .gallery-item {
+            height: 300px;
+            overflow: hidden;
+            border-radius: 10px;
+            position: relative;
+        }
+        
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+        
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+        
+        /* Blog Section */
+        .blog {
+            padding: 100px 0;
+            background: #f8f5f0;
+        }
+        
+        .blog-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .blog-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: var(--transition);
+        }
+        
+        .blog-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+        }
+        
+        .blog-img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+        
+        .blog-content {
+            padding: 20px;
+        }
+        
+        .blog-content h3 {
+            margin-bottom: 10px;
+            font-size: 1.2rem;
+        }
+        
+        .blog-content p {
+            margin-bottom: 15px;
+            color: #666;
+        }
+        
+        .read-more {
+            color: var(--primary-light);
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        /* Footer */
+        footer {
+            background: var(--primary-dark);
+            color: var(--text-light);
+            padding: 80px 0 0;
+        }
+        
+        .footer-top {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            padding-bottom: 50px;
+        }
+        
+        .footer-column h4 {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        .footer-column p {
+            margin-bottom: 10px;
+            color: #acacac;
+        }
+        
+        .footer-column ul {
+            list-style: none;
+        }
+        
+        .footer-column ul li {
+            margin-bottom: 10px;
+            color: #acacac;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .social-links a {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+        }
+        
+        .social-links a:hover {
+            background: var(--primary-light);
+            transform: translateY(-5px);
+        }
+        
+        .footer-bottom {
+            background: rgba(0,0,0,0.2);
+            padding: 20px 0;
+            text-align: center;
+            color: #acacac;
+            font-size: 0.9rem;
+        }
+        
+        /* Responsive Styles */
+        @media (max-width: 992px) {
+            .slide h1 {
+                font-size: 2.5rem;
+            }
+            
+            .slide p {
+                font-size: 1rem;
+            }
+            
+            .coffee-city {
+                flex-direction: column;
+            }
+            
+            .city-text {
+                padding: 40px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .hamburger {
+                display: flex;
+            }
+            
+            .slide h1 {
+                font-size: 2rem;
+            }
+            
+            .section-title h2 {
+                font-size: 28px;
+            }
+            
+            .snack-container {
+                flex-direction: column;
+            }
+            
+            .snack-image {
+                order: 2;
+            }
+            
+            .snack-content {
+                order: 1;
+                text-align: center;
+            }
+            
+            .snack-content hr {
+                margin: 20px auto;
+            }
+            
+            .gallery-container {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .slide h1 {
+                font-size: 1.8rem;
+            }
+            
+            .section-title h2 {
+                font-size: 24px;
+            }
+            
+            .features-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .blog-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-top {
+                grid-template-columns: 1fr;
+            }
+            
+            .nav-btn {
+                width: 40px;
+                height: 40px;
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <div id="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <img src="https://img.freepik.com/premium-vector/coffee-bean-drink-logo-design-brown-color-vector-illustration_638875-1264.jpg" alt="Logo">
+                Jawi Coffee Shop
+            </div>
+            <div class="nav-links">
+                <a href="menu.html">Menu</a>
+                <a href="ourstory.html">Our Story</a>
+                <a href="location.html">Locations</a>
+                <a href="gallery.html">Gallery</a>
+                <a href="contact.html">Contact Us</a>
+                <a href="blog1.html">Blog</a>
+            </div>
+            <div class="hamburger" onclick="toggleMobileMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+        <div class="mobile-nav" id="mobileNav">
+            <a href="menu.html">Menu</a>
+            <a href="ourstory.html">Our Story</a>
+            <a href="location.html">Locations</a>
+            <a href="gallery.html">Gallery</a>
+            <a href="contact.html">Contact Us</a>
+            <a href="blog1.html">Blog</a>
+        </div>
+    </div>
+
+    <!-- Coffee Slider -->
+    <div id="coffee-slider">
+        <div class="slide active" style="background-image: url('https://barista.qodeinteractive.com/elementor/wp-content/uploads/2017/01/home-1-slider.jpg')">
+            <div class="slide-content">
+                <h1>IMPORTANCE OF COFFEE</h1>
+                <p>Life is better with a cup of coffee</p>
+                <a href="blog1.html" class="btn">Read More</a>
+                <br><br>
+                <a href="menu.html" class="offer-btn">What We Offer</a>
+            </div>
+        </div>
+        <div class="slide" style="background-image: url('https://barista.qodeinteractive.com/elementor/wp-content/uploads/2017/02/main.jpg')">
+            <div class="slide-content">
+                <h1>SPECIAL COFFEE BEANS</h1>
+                <p>May Your Coffee Be Strong And Your Goals Stronger</p>
+                <a href="blog2.html" class="btn">Read More</a>
+                <br><br>
+                <a href="menu.html" class="offer-btn">What We Offer</a>
+            </div>
+        </div>
+        <div class="slide" style="background-image: url('https://barista.qodeinteractive.com/elementor/wp-content/uploads/2017/01/home-1-slider-img-2.jpg')">
+            <div class="slide-content">
+                <h1>THE HOME OF COFFEE</h1>
+                <p>Where coffee meets culture and passion in every brew</p>
+                <a href="blog3.html" class="btn">Read More</a>
+                <br><br>
+                <a href="menu.html" class="offer-btn">What We Offer</a>
+            </div>
+        </div>
+        <button class="nav-btn left">&#10094;</button>
+        <button class="nav-btn right">&#10095;</button>
+    </div>
+
+    <!-- Features Section -->
+    <section class="features">
+        <div class="container">
+            <div class="section-title">
+                <span class="subtitle">What Happens Here</span>
+                <h2>COFFEE BUILD YOUR BASE</h2>
+            </div>
+            <div class="features-container">
+                <div class="feature-card">
+                    <img src="https://barista.qodeinteractive.com/elementor/wp-content/uploads/2017/01/h-1-img-1.jpg" alt="Beautiful Place" class="feature-img">
+                    <div class="feature-title">
+                        <span class="feature-number">01</span>
+                        <h3>Beautiful Place</h3>
+                    </div>
+                    <p>Step into Jawi Coffee Shop – where beauty meets comfort. Nestled in a charming, cozy corner, Jawi is more than just a coffee spot — it's a peaceful escape wrapped in warm lighting, rustic wood, and the rich aroma of freshly brewed perfection.</p>
+                </div>
+                <div class="feature-card">
+                    <img src="https://barista.qodeinteractive.com/elementor/wp-content/uploads/2017/01/h-1-img-2.jpg" alt="Feel the Coffee" class="feature-img">
+                    <div class="feature-title">
+                        <span class="feature-number">02</span>
+                        <h3>FEEL THE COFFEE</h3>
+                    </div>
+                    <p>From the first sip to the last swirl in your cup, our coffee isn’t just tasted — it’s felt. Brewed with passion and crafted from the finest beans, every cup carries the warmth, depth, and soul of Jawi.</p>
+                </div>
+                <div class="feature-card">
+                    <img src="https://barista.qodeinteractive.com/elementor/wp-content/uploads/2017/01/h-1-img-3.jpg" alt="Full Taste" class="feature-img">
+                    <div class="feature-title">
+                        <span class="feature-number">03</span>
+                        <h3>FULL TASTE</h3>
+                    </div>
+                    <p>Experience Full Taste at Jawi — where every note tells a story. Our coffee isn’t just strong, it’s symphonic — rich in aroma, layered in flavor, and deeply satisfying.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Menu Snack Section -->
+    <section class="menu-snack">
+        <div class="container">
+            <div class="snack-container">
+                <div class="snack-image">
+                    <img src="https://barista.qodeinteractive.com/elementor/wp-content/uploads/2017/01/home-1-img-6.png" alt="Coffee & Snacks">
+                </div>
+                <div class="snack-content">
+                    <p class="subtitle">Our Menu</p>
+                    <h2>Enjoy Delicious Snacks & Coffee</h2>
+                    <hr>
+                    <p>Explore a variety of freshly brewed coffee, sweet pastries, and savory bites crafted with love and local ingredients.</p>
+                    <a href="menu.html" class="offer-btn">What We Offer</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Coffee City Section -->
+    <section class="coffee-city">
+        <div class="city-text">
+            <h2>Try the best coffee in the city</h2>
+            <p>If you're looking for rich flavor, a cozy atmosphere, and the finest coffee in town, Jawi Coffee Shop in Donholm is the place to be. Whether you're grabbing a quick espresso or settling in for a slow sip, Jawi offers expertly brewed cups that keep customers coming back. Come experience coffee done right — where every cup tells a story.</p>
+            <a href="gallery.html" class="btn">See More →</a>
+        </div>
+        <div class="slider">
+            <img src="https://barista.qodeinteractive.com/elementor/wp-content/uploads/2017/01/main-home-project-pres-1.jpg" alt="Coffee Shop Interior" class="active">
+            <img src="https://barista.qodeinteractive.com/elementor/wp-content/uploads/2017/01/main-home-project-pres-2.jpg" alt="Coffee Making">
+            <img src="https://barista.qodeinteractive.com/elementor/wp-content/uploads/2017/01/main-home-project-pres-3.jpg" alt="Coffee Bar">
+        </div>
+    </section>
+
+    <!-- Menu Categories -->
+    <section class="menu-categories">
+        <h1>Explore Our Delicious Menu Categories</h1>
+        <div class="menu-sections">
+            <div class="section" style="background-image: url('https://img.freepik.com/free-photo/steaming-cup-coffee-saucer-with-coffee-beans-scattered-around_9975-124454.jpg')">
+                <a href="menu.html">Hot Coffee</a>
+            </div>
+            <div class="section" style="background-image: url('https://img.freepik.com/free-photo/delicious-coffee-cup-indoors_23-2150691347.jpg')">
+                <a href="menu.html">Iced Coffee</a>
+            </div>
+            <div class="section" style="background-image: url('https://img.freepik.com/premium-photo/glass-orange-juice-with-pineapple-fruit-it_1293074-18676.jpg')">
+                <a href="menu.html">Juice</a>
+            </div>
+            <div class="section" style="background-image: url('https://img.freepik.com/free-photo/milkshake-set-table_140725-9239.jpg')">
+                <a href="menu.html">Milkshake</a>
+            </div>
+            <div class="section" style="background-image: url('https://img.freepik.com/free-photo/delicious-banana-blueberry-smoothie_23-2148858678.jpg')">
+                <a href="menu.html">Protein Shake</a>
+            </div>
+            <div class="section" style="background-image: url('https://img.freepik.com/free-photo/front-view-milk-tea-concept-with-copy-space_23-2148555195.jpg')">
+                <a href="menu.html">Chai and Tea</a>
+            </div>
+            <div class="section" style="background-image: url('https://img.freepik.com/free-photo/four-different-cocktail-smoothies-with-milky-cream-top_114579-1097.jpg')">
+                <a href="menu.html">Milk Shake</a>
+            </div>
+            <div class="section" style="background-image: url('https://img.freepik.com/premium-photo/taiwan-milk-tea-with-bubble_1339-107645.jpg')">
+                <a href="menu.html">Coffee Boba</a>
+            </div>
+            <div class="section" style="background-image: url('https://img.freepik.com/premium-photo/taiwan-milk-tea-with-bubble_1339-82081.jpg')">
+                <a href="menu.html">Milk Tea Boba</a>
+            </div>
+            <div class="section" style="background-image: url('https://img.freepik.com/free-photo/selection-various-cocktails-table_140725-2909.jpg')">
+                <a href="menu.html">Signature Drinks</a>
+            </div>
+            <div class="section" style="background-image: url('https://img.freepik.com/free-photo/3d-rendering-chinese-reunion-dinner-drink_23-2151089109.jpg')">
+                <a href="menu.html">Fruit Tea Boba</a>
+            </div>
+            <div class="section" style="background-image: url('https://img.freepik.com/free-photo/composition-with-delicious-thai-tea_23-2148994320.jpg')">
+                <a href="menu.html">Mocktail Boba</a>
+            </div>
+            <div class="section" style="background-image: url('https://img.freepik.com/premium-photo/close-up-drink-served-table_1048944-9876892.jpg')">
+                <a href="menu.html">Lemonade Boba</a>
+            </div>
+            <div class="section" style="background-image: url('https://img.freepik.com/premium-photo/closeup-buns-rolls-fruit-breakfast-lunch-dinner-hotel-restaurant-buffet_392485-702.jpg')">
+                <a href="menu.html">Snacks & Creeps</a>
+            </div>
+            <div class="section" style="background-image: url('https://img.freepik.com/free-photo/breakfast-with-various-sweets-wafers-corn-flakes-cup-coffee-top-view_114579-6835.jpg')">
+                <a href="menu.html">Snacks & Waffles</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section class="gallery">
+        <div class="container">
+            <div class="section-title">
+                <span class="subtitle">our Gallery</span>
+                <h2>COFFEE BUILD YOUR BASE WITH US</h2>
+            </div>
+            <div class="gallery-container">
+                <div class="gallery-item">
+                    <img src="https://barista.qodeinteractive.com/elementor/wp-content/uploads/2017/01/home-1-gallery-1.jpg" alt="Gallery 1">
+                </div>
+                <div class="gallery-item">
+                    <img src="https://barista.qodeinteractive.com/elementor/wp-content/uploads/2017/01/home-1-gallery-2.jpg" alt="Gallery 2">
+                </div>
+                <div class="gallery-item">
+                    <img src="https://barista.qodeinteractive.com/elementor/wp-content/uploads/2017/01/home-1-gallery-3.jpg" alt="Gallery 3">
+                </div>
+                <div class="gallery-item">
+                    <img src="https://barista.qodeinteractive.com/elementor/wp-content/uploads/2017/01/home-1-gallery-4.jpg" alt="Gallery 4">
+                </div>
+                <div class="gallery-item">
+                    <img src="https://barista.qodeinteractive.com/elementor/wp-content/uploads/2017/01/home-1-gallery-5.jpg" alt="Gallery 5">
+                </div>
+                <div class="gallery-item">
+                    <img src="https://barista.qodeinteractive.com/elementor/wp-content/uploads/2017/01/home-1-gallery-6.jpg" alt="Gallery 6">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Blog Section -->
+    <section class="blog">
+        <div class="container">
+            <div class="section-title">
+                <span class="subtitle">What Happens Here</span>
+                <h2>READ OUR LATEST NEWS</h2>
+            </div>
+            <div class="blog-container">
+                <div class="blog-card">
+                    <img src="https://barista.qodeinteractive.com/elementor/wp-content/uploads/2016/02/home-1-blog-f-img-1.jpg" alt="Coffee Tasting" class="blog-img">
+                    <div class="blog-content">
+                        <h3>The Art of Coffee Tasting</h3>
+                        <p>Coffee is more than just a beverage — it's an experience. Whether you’re a seasoned coffee connoisseur or just starting to explore the rich world of coffee, learning the art of coffee tasting...</p>
+                        <a href="blog1.html" class="read-more">Read more <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+                <div class="blog-card">
+                    <img src="https://barista.qodeinteractive.com/elementor/wp-content/uploads/2017/01/home-1-blog-f-img-2.jpg" alt="Coffee Beans" class="blog-img">
+                    <div class="blog-content">
+                        <h3>Special Coffee Beans</h3>
+                        <p>Discover the journey of our special coffee beans from exotic plantations to your cup. Each bean tells a story of tradition, passion, and the perfect roast...</p>
+                        <a href="blog2.html" class="read-more">Read more <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+                <div class="blog-card">
+                    <img src="https://barista.qodeinteractive.com/elementor/wp-content/uploads/2017/01/home-1-blog-f-img-3.jpg" alt="Sustainable Coffee" class="blog-img">
+                    <div class="blog-content">
+                        <h3>Sustainable Coffee Practices</h3>
+                        <p>Learn how we're making a difference through sustainable coffee practices that benefit farmers, communities, and the environment...</p>
+                        <a href="blog3.html" class="read-more">Read more <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-top">
+                <div class="footer-column">
+                    <h4>Opening Hours</h4>
+                    <p><strong>Monday:</strong> Closed</p>
+                    <p><strong>Tuesday - Thursday:</strong> 9:00 - 22:00</p>
+                    <p><strong>Friday - Saturday:</strong> 9:00 - 1:00</p>
+                    <p><strong>Sunday:</strong> 9:00 - 22:00</p>
+                </div>
+                <div class="footer-column">
+                    <h4>Contact us</h4>
+                    <p><a href="mailto:info@jawicoffee.com">info@jawicoffee.com</a></p>
+                    <p>+254 712 345 678</p>
+                    <p>Raymond Boulevard 224, Donholm</p>
+                    <h4 style="margin-top: 20px;">Newsletter</h4>
+                    <form class="newsletter-form">
+                        <input type="email" placeholder="Your E-Mail">
+                        <button type="submit">Subscribe</button>
+                    </form>
+                </div>
+                <div class="footer-column">
+                    <h4>other locations</h4>
+                    <p><strong>Jawi coffee shop</strong></p>
+                    <p>2606 Saints Alley<br>Tampa, FL 33602</p>
+                    <p><strong>Barista cafe</strong></p>
+                    <p>3497 Watson Street<br>Camden, NJ 08102</p>
+                </div>
+                <div class="footer-column">
+                    <h4>Connect With Us</h4>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-pinterest"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="container">
+                <p>&copy; 2025 Jawi Coffee Shop. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Navigation Bar Functionality
+        function toggleMobileMenu() {
+            const nav = document.getElementById('mobileNav');
+            nav.style.display = nav.style.display === 'flex' ? 'none' : 'flex';
+        }
+
+        const navbar = document.getElementById('navbar');
+        let lastScrollTop = 0;
+        let lastHidePosition = 0;
+        let lastShowPosition = 0;
+        let forceVisible = true;
+
+        window.addEventListener("scroll", function () {
+            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+
+            if (forceVisible && scrollTop < 10) {
+                navbar.style.top = "0";
+                return;
+            } else {
+                forceVisible = false;
+            }
+
+            if (scrollTop > lastScrollTop && (scrollTop - lastHidePosition) > 400) {
+                navbar.style.top = "-100px";
+                lastHidePosition = scrollTop;
+                lastShowPosition = scrollTop;
+            }
+
+            if (scrollTop < lastScrollTop && (lastShowPosition - scrollTop) > 100) {
+                navbar.style.top = "0";
+                lastShowPosition = scrollTop;
+                lastHidePosition = scrollTop;
+            }
+
+            lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
+        });
+
+        document.addEventListener("DOMContentLoaded", () => {
+            navbar.style.top = "0";
+        });
+
+        function checkMobileView() {
+            const navLinks = document.querySelector('.nav-links');
+            const hamburger = document.querySelector('.hamburger');
+            const mobileNav = document.getElementById('mobileNav');
+
+            if (window.innerWidth <= 768) {
+                navLinks.style.display = 'none';
+                hamburger.style.display = 'flex';
+            } else {
+                navLinks.style.display = 'flex';
+                hamburger.style.display = 'none';
+                mobileNav.style.display = 'none';
+            }
+        }
+
+        window.addEventListener("resize", checkMobileView);
+        window.addEventListener("load", checkMobileView);
+
+        // Coffee Slider Functionality
+        (function () {
+            const slider = document.getElementById('coffee-slider');
+            const slides = slider.querySelectorAll('.slide');
+            const prevBtn = slider.querySelector('.nav-btn.left');
+            const nextBtn = slider.querySelector('.nav-btn.right');
+            let currentSlide = 0;
+
+            function showSlide(index) {
+                slides.forEach(slide => slide.classList.remove('active'));
+                slides[index].classList.add('active');
+            }
+
+            function nextSlide() {
+                currentSlide = (currentSlide + 1) % slides.length;
+                showSlide(currentSlide);
+            }
+
+            function prevSlide() {
+                currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+                showSlide(currentSlide);
+            }
+
+            nextBtn.addEventListener('click', nextSlide);
+            prevBtn.addEventListener('click', prevSlide);
+
+            setInterval(nextSlide, 5000);
+        })();
+
+        // City Image Slider
+        (function () {
+            const slider = document.querySelector('.slider');
+            const images = slider.querySelectorAll('img');
+            let currentImage = 0;
+
+            function showImage(index) {
+                images.forEach(img => img.classList.remove('active'));
+                images[index].classList.add('active');
+            }
+
+            function nextImage() {
+                currentImage = (currentImage + 1) % images.length;
+                showImage(currentImage);
+            }
+
+            setInterval(nextImage, 3000);
+        })();
+
+        // Gallery Hover Effect
+        document.querySelectorAll('.gallery-item').forEach(item => {
+            item.addEventListener('mouseover', () => {
+                item.querySelector('img').style.transform = 'scale(1.1)';
+            });
+            
+            item.addEventListener('mouseout', () => {
+                item.querySelector('img').style.transform = 'scale(1)';
+            });
+        });
+    </script>
+</body>
+</html>
